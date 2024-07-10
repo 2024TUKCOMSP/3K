@@ -24,7 +24,7 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 
 ### 참고 자료
 - [Firebase 서버를 통한 Android앱 HowlTalk 만들기, 하울][https://www.inflearn.com/course/howltalk-android-%EC%B1%84%ED%8C%85%EC%95%B1]
-- [채팅앱 만드는 방법, 만들면서 배워가는 프로그래][https://youtu.be/Q47lLj4ErKs?si=sNCV2-9j__b5c44s]
+- [채팅앱 만드는 방법, 만들면서 배워가는 프로그래머][https://youtu.be/Q47lLj4ErKs?si=sNCV2-9j__b5c44s]
 - [안드로이드 스튜디오 기초 강의 : 채팅 앱 만들기, 센치한 개발자][https://youtu.be/MvH6Suffghg?si=16M602gysAL_goxH]
 
 ## 기술 스택
