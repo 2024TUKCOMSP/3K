@@ -33,5 +33,6 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34)
 ![Android Studio](https://img.shields.io/badge/android%20studio-346ac1?style=for-the-badge&logo=android%20studio&logoColor=white)
 
-
-
+## 회의 시간
+- 화요일 12시
+- 금요일 14시
