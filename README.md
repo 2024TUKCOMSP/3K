@@ -28,6 +28,7 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 - [안드로이드 스튜디오 기초 강의 : 채팅 앱 만들기, 센치한 개발자][https://youtu.be/MvH6Suffghg?si=16M602gysAL_goxH]
 - [firebase를 이용한 비밀번호 찾기, 이무헌][https://velog.io/@ecoco97/firebase%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EC%B0%BE%EA%B8%B0]
 - [firebase를 이용한 아이디/비밀번호 찾기, 지우개][https://velog.io/@hanwldn76/Android-Studio-Firebase%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%95%84%EC%9D%B4%EB%94%94%EC%B0%BE%EA%B8%B0%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8%EC%B0%BE%EA%B8%B0-%EA%B5%AC%ED%98%84]
+- [[Android] Github Actions 를 통해 CI/CD를 구축해보자!, 윤호이][https://velog.io/@lyh990517/Android-Github-Actions-%EB%A5%BC-%ED%86%B5%ED%95%B4CICD%EB%A5%BC-%EA%B5%AC%EC%B6%95%ED%95%B4%EB%B3%B4%EC%9E%90]
 
 ## 기술 스택
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
