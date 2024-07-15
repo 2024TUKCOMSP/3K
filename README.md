@@ -26,6 +26,8 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 - [Firebase 서버를 통한 Android앱 HowlTalk 만들기, 하울][https://www.inflearn.com/course/howltalk-android-%EC%B1%84%ED%8C%85%EC%95%B1]
 - [채팅앱 만드는 방법, 만들면서 배워가는 프로그래머][https://youtu.be/Q47lLj4ErKs?si=sNCV2-9j__b5c44s]
 - [안드로이드 스튜디오 기초 강의 : 채팅 앱 만들기, 센치한 개발자][https://youtu.be/MvH6Suffghg?si=16M602gysAL_goxH]
+- [firebase를 이용한 비밀번호 찾기, 이무헌][https://velog.io/@ecoco97/firebase%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EC%B0%BE%EA%B8%B0]
+- [firebase를 이용한 아이디/비밀번호 찾기, 지우개][https://velog.io/@hanwldn76/Android-Studio-Firebase%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%95%84%EC%9D%B4%EB%94%94%EC%B0%BE%EA%B8%B0%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8%EC%B0%BE%EA%B8%B0-%EA%B5%AC%ED%98%84]
 
 ## 기술 스택
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
