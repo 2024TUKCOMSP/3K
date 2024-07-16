@@ -10,26 +10,26 @@ import com.example.chatapplication.databinding.ActivityChatListBinding
 import com.example.chatapplication.fragment.PeopleFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class ChatListActivity : AppCompatActivity(),
-    BottomNavigationView.OnNavigationItemSelectedListener{
+class ChatListActivity : AppCompatActivity() {
     lateinit var binding: ActivityChatListBinding
-    lateinit var peopleFragment: PeopleFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        peopleFragment = PeopleFragment.newInstance()
-        binding.chatlistBottomnavigationview.setOnNavigationItemSelectedListener(this)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_people -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.chatlist_framelayout, peopleFragment).commit()
+        var bnv_main = findViewById(R.id.chatlist_bottomnavigationview) as BottomNavigationView
+        bnv_main.run {
+            setOnNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.action_people -> {
+                        val peopleFragment = PeopleFragment()
+                        supportFragmentManager.beginTransaction().replace(R.id.chatlist_framelayout,
+                            peopleFragment).commit()
+                    }
+                }
+                true
             }
+            selectedItemId = R.id.action_people
         }
-        return true
     }
 }
