@@ -6,11 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatapplication.R
+import com.example.chatapplication.User
+import com.example.chatapplication.databinding.FragmentPeopleBinding
 
 class PeopleFragment : Fragment() {
+    lateinit var binding: FragmentPeopleBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = FragmentPeopleBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
     }
 
@@ -21,31 +26,10 @@ class PeopleFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_people, container, false)
         return view
     }
-    /* 작성 예정
-    class PeopleAdapter(val context:Context, val userList: ArrayList<User>) {
-
-        class PeopleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            TODO("Not yet implemented")
-        }
-
-        override fun getItemCount(): Int {
-            TODO("Not yet implemented")
-        }
-
-        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            TODO("Not yet implemented")
-        }
-
-    }*/
 
     companion object {
         fun newInstance() : PeopleFragment {
             return PeopleFragment()
         }
     }
-
 }
