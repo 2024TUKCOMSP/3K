@@ -1,5 +1,6 @@
 package com.example.chatapplication
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -20,5 +21,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.loginBtn.setOnClickListener {
+            val intent = Intent(this, ChatListActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
