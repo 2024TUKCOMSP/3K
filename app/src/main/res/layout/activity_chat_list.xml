@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/chatlist_bottomnavigationview"
         android:layout_alignParentBottom="true"
-        app:itemBackground="#0027FF"
+        android:background="@color/blue"
+        app:itemBackground="@color/blue"
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/white"
         app:menu="@menu/bottom_main"/>
