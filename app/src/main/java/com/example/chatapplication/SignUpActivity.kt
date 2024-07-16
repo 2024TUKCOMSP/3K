@@ -24,10 +24,15 @@ class SignUpActivity : AppCompatActivity() {
         mAuth = Firebase.auth
 
         binding.signUpBtn.setOnClickListener {
+            val name = binding.nameEdit.text.toString().trim()
             val email = binding.emailEdit.text.toString().trim()
             val password = binding.passwordEdit.text.toString().trim()
 
-            singUp(email, password)
+            if(email == "" || password == "" || name == "") {
+                Toast.makeText(this, "형식이 올바르지 않습니다", Toast.LENGTH_SHORT).show()
+            } else {
+                singUp(email, password)
+            }
         }
     }
 
