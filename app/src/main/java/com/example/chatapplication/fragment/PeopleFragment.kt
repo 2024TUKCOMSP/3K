@@ -23,25 +23,21 @@ class PeopleFragment : Fragment() {
 
     lateinit var userList: ArrayList<User>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        binding = FragmentPeopleBinding.inflate(layoutInflater)
-        userList = ArrayList()
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentPeopleBinding.inflate(layoutInflater)
         val view = inflater.inflate(R.layout.fragment_people, container, false)
 
-        /*
-        adapter = UserAdapter(requireContext(), userList)
+        //테스트 코드
+        userList = arrayListOf(User("1","",""), User("2", "",""))
+        adapter = UserAdapter(userList)
 
-        binding.peoplefragmentRecyclerview.layoutManager = LinearLayoutManager(this.context)
+        binding.peoplefragmentRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.peoplefragmentRecyclerview.adapter = adapter
         binding.peoplefragmentRecyclerview.addItemDecoration(DividerItemDecoration(this.context, LinearLayoutManager.VERTICAL))
-        adapter.notifyDataSetChanged()*/
-        return view
+        adapter.notifyDataSetChanged()
+        return binding.root
     }
 }
