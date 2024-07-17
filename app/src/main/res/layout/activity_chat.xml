@@ -19,6 +19,8 @@
         android:layout_toLeftOf="@id/chatActivity_button"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/chatActivity_button"
+        android:background="@drawable/edit_background"
         android:id="@+id/chatActivity_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -27,6 +29,8 @@
         android:id="@+id/chatActivity_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="3dp"
         android:text="전송"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"/>
