@@ -11,14 +11,14 @@ import com.example.chatapplication.R
 import com.example.chatapplication.User
 import com.example.chatapplication.UserAdapter
 import com.example.chatapplication.databinding.FragmentPeopleBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class PeopleFragment : Fragment() {
     lateinit var binding: FragmentPeopleBinding
@@ -48,15 +48,22 @@ class PeopleFragment : Fragment() {
         binding.peoplefragmentRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.peoplefragmentRecyclerview.adapter = adapter
         binding.peoplefragmentRecyclerview.addItemDecoration(DividerItemDecoration(this.context, LinearLayoutManager.VERTICAL))
-        adapter.notifyDataSetChanged()
 
         mDbRef.child("user").addValueEventListener(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
+                for(postSnapshot in snapshot.children){
+                    // 유저 정보
+                    val currentUser = postSnapshot.getValue(User::class.java)
+
+                    if(mAuth.currentUser?.uid != currentUser?.uId){
+                        userList.add(currentUser!!)
+                    }
+                }
+                adapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
 
         })

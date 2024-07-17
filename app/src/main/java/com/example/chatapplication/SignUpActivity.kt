@@ -5,8 +5,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.chatapplication.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
     lateinit var binding: ActivitySignUpBinding
@@ -17,8 +19,8 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        mAuth = FirebaseAuth.getInstance()
-        mDbRef = FirebaseDatabase.getInstance().reference
+        mAuth = Firebase.auth
+        mDbRef = Firebase.database.reference
 
         binding.signUpBtn.setOnClickListener {
             val name = binding.nameEdit.text.toString().trim()
