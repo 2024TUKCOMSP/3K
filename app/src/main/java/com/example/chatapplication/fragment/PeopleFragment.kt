@@ -1,25 +1,31 @@
 package com.example.chatapplication.fragment
 
-import android.content.Context
 import android.os.Bundle
-import android.text.InputFilter.AllCaps
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.chatapplication.R
 import com.example.chatapplication.User
 import com.example.chatapplication.UserAdapter
 import com.example.chatapplication.databinding.FragmentPeopleBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
 
 class PeopleFragment : Fragment() {
     lateinit var binding: FragmentPeopleBinding
     lateinit var adapter: UserAdapter
+
+    lateinit var mAuth: FirebaseAuth
+    lateinit var mDbRef:DatabaseReference
 
     lateinit var userList: ArrayList<User>
 
@@ -30,14 +36,31 @@ class PeopleFragment : Fragment() {
         binding = FragmentPeopleBinding.inflate(layoutInflater)
         val view = inflater.inflate(R.layout.fragment_people, container, false)
 
-        //테스트 코드
-        userList = arrayListOf(User("1","",""), User("2", "",""))
+        // 인증 초기화
+        mAuth = Firebase.auth
+        // db 초기화
+        mDbRef = Firebase.database.reference
+        // 리스트 초기화
+        userList = ArrayList()
+        // 어댑터 초기화
         adapter = UserAdapter(userList)
 
         binding.peoplefragmentRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.peoplefragmentRecyclerview.adapter = adapter
         binding.peoplefragmentRecyclerview.addItemDecoration(DividerItemDecoration(this.context, LinearLayoutManager.VERTICAL))
         adapter.notifyDataSetChanged()
+
+        mDbRef.child("user").addValueEventListener(object:ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
         return binding.root
     }
 }
