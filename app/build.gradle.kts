@@ -48,8 +48,11 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-database")
+
 }
