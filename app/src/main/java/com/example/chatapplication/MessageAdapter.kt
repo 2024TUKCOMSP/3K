@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import org.w3c.dom.Text
 
-class MessageAdapter(private val context: Context, private val messageList: ArrayList<Message>):
+class MessageAdapter(private val context: Context, private val messageList: ArrayList<Message>, private val name: String):
     RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private val receive = 1 // 받는 타입
@@ -21,7 +21,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
             RecvViewHolder(view)
         } else {
             val view: View = LayoutInflater.from(context).inflate(R.layout.item_message_send, parent, false)
-            RecvViewHolder(view)
+            SendViewHolder(view)
         }
     }
 
@@ -34,6 +34,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
         } else {
             val viewHolder = holder as RecvViewHolder
             viewHolder.recvMessage.text = currentMessage.message
+            viewHolder.recvName.text = name
         }
     }
 
@@ -59,5 +60,6 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
     // 받은 쪽
     class RecvViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val recvMessage: TextView = itemView.findViewById(R.id.recv_text_message)
+        val recvName: TextView = itemView.findViewById(R.id.recv_text_name)
     }
 }
