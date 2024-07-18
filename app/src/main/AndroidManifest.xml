@@ -19,6 +19,7 @@
             android:name=".SettingActivity"
             android:exported="false" />
         <activity
+            android:parentActivityName=".ChatListActivity"
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
