@@ -2,6 +2,7 @@ package com.example.chatapplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chatapplication.databinding.ActivityChatBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -34,8 +35,11 @@ class ChatActivity : AppCompatActivity() {
         receiverName = intent.getStringExtra("name").toString()
         receiverUid = intent.getStringExtra("uId").toString()
 
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val font_size : String? = sharedPreferences.getString("font_size", "10")
+
         binding.chatActivityRecyclerview.layoutManager = LinearLayoutManager(this)
-        val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName)
+        val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName, font_size!!.toInt())
         binding.chatActivityRecyclerview.adapter = messageAdapter
 
         mAuth = FirebaseAuth.getInstance()
