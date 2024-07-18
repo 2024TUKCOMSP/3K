@@ -30,13 +30,13 @@ class ChatActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         messageList = ArrayList()
-        val messageAdapter: MessageAdapter = MessageAdapter(this, messageList)
-
-        binding.chatActivityRecyclerview.layoutManager = LinearLayoutManager(this)
-        binding.chatActivityRecyclerview.adapter = messageAdapter
 
         receiverName = intent.getStringExtra("name").toString()
         receiverUid = intent.getStringExtra("uId").toString()
+
+        binding.chatActivityRecyclerview.layoutManager = LinearLayoutManager(this)
+        val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName)
+        binding.chatActivityRecyclerview.adapter = messageAdapter
 
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().reference

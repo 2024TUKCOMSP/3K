@@ -28,7 +28,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>):
         binding.frienditemTextview.text = currentUser.name
 
         holder.itemView.setOnClickListener{
-            val intent = Intent(context, chatActivity::class.java)
+            val intent = Intent(context, ChatActivity::class.java)
 
             intent.putExtra("name", currentUser.name)
             intent.putExtra("uId", currentUser.uId)
