@@ -34,13 +34,17 @@ class ChatListActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menu?.add(0,0,0,"로그아웃")
+        menu?.add(0,0,0,"설정")
+        menu?.add(0,1,0,"로그아웃")
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             0 -> {
+
+            }
+            1 -> {
                 AlertDialog.Builder(this).run{
                     setTitle("로그아웃")
                     setIcon(android.R.drawable.ic_dialog_info)

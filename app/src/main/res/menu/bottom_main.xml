@@ -4,4 +4,8 @@
         android:id="@+id/action_people"
         android:icon="@drawable/peoples"
         android:title="People"/>
+    <item
+        android:id="@+id/action_Account"
+        android:icon="@drawable/account"
+        android:title="Account"/>
 </menu>
