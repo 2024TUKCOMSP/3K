@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.chatapplication.databinding.ActivityChatListBinding
+import com.example.chatapplication.fragment.AccountFragment
 import com.example.chatapplication.fragment.PeopleFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -25,6 +26,11 @@ class ChatListActivity : AppCompatActivity() {
                         val peopleFragment = PeopleFragment()
                         supportFragmentManager.beginTransaction().replace(R.id.chatlist_framelayout,
                             peopleFragment).commit()
+                    }
+                    R.id.action_Account -> {
+                        val accountFragment = AccountFragment()
+                        supportFragmentManager.beginTransaction().replace(R.id.chatlist_framelayout,
+                            accountFragment).commit()
                     }
                 }
                 true
