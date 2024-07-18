@@ -42,7 +42,7 @@ class ChatListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             0 -> {
-
+                startActivity(Intent(this@ChatListActivity, SettingActivity::class.java))
             }
             1 -> {
                 AlertDialog.Builder(this).run{
