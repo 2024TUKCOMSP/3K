@@ -36,7 +36,7 @@ class ChatActivity : AppCompatActivity() {
         receiverUid = intent.getStringExtra("uId").toString()
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val font_size : String? = sharedPreferences.getString("font_size", "10")
+        val font_size : String? = sharedPreferences.getString("font_size", "14")
 
         binding.chatActivityRecyclerview.layoutManager = LinearLayoutManager(this)
         val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName, font_size!!.toInt())

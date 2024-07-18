@@ -1,5 +1,6 @@
 package com.example.chatapplication.fragment
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,6 +9,7 @@ import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.chatapplication.R
+import com.google.firebase.database.FirebaseDatabase
 
 class SettingsFragment : PreferenceFragmentCompat(),
     SharedPreferences.OnSharedPreferenceChangeListener {
@@ -32,6 +34,11 @@ class SettingsFragment : PreferenceFragmentCompat(),
                 false
             }
             else {
+                val sharedPref = requireContext().getSharedPreferences("com.example.chatapplication_preferences", Context.MODE_PRIVATE)
+                val uid = sharedPref.getString("uid", "")
+                val map: Map<String, Int> = mapOf("font_size" to value)
+                val mDbRef = FirebaseDatabase.getInstance().reference
+                mDbRef.child("user").child(uid.toString()).updateChildren(map)
                 true
             }
         }
