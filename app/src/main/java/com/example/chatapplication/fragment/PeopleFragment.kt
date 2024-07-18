@@ -43,7 +43,7 @@ class PeopleFragment : Fragment() {
         // 리스트 초기화
         userList = ArrayList()
         // 어댑터 초기화
-        adapter = UserAdapter(userList)
+        adapter = UserAdapter(requireContext(), userList)
 
         binding.peoplefragmentRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.peoplefragmentRecyclerview.adapter = adapter
