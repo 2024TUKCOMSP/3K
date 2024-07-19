@@ -9,10 +9,10 @@
     </string-array>
 
     <string-array name="font_style_value">
-        <item>maruburibold.ttf</item>
-        <item>maruburiextralight.ttf</item>
-        <item>maruburilight.ttf</item>
-        <item>maruburiregular.ttf</item>
-        <item>maruburisemibold.ttf</item>
+        <item>maruburibold</item>
+        <item>maruburiextralight</item>
+        <item>maruburilight</item>
+        <item>maruburiregular</item>
+        <item>maruburisemibold</item>
     </string-array>
 </resources>

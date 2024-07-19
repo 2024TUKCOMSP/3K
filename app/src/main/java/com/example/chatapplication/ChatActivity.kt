@@ -1,6 +1,7 @@
 package com.example.chatapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,8 +38,9 @@ class ChatActivity : AppCompatActivity() {
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val font_size : String? = sharedPreferences.getString("font_size", "14")
-        val font_style_str : String? = sharedPreferences.getString("font_style", "maruburibold.ttf")
+        val font_style_str : String? = sharedPreferences.getString("font_style", "maruburibold")
         val font_stylr_id = this.resources.getIdentifier(font_style_str, "font", packageName)
+        Log.d("fdsafsafsa", font_stylr_id.toString())
 
         binding.chatActivityRecyclerview.layoutManager = LinearLayoutManager(this)
         val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName, font_size!!.toLong(), font_stylr_id)
