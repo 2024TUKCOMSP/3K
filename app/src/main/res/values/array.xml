@@ -1,3 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="font_style">
+        <item>Bold</item>
+        <item>ExtraLight</item>
+        <item>Light</item>
+        <item>Regular</item>
+        <item>SemiBold</item>
+    </string-array>
+
+    <string-array name="font_style_value">
+        <item>maruburibold.ttf</item>
+        <item>maruburiextralight.ttf</item>
+        <item>maruburilight.ttf</item>
+        <item>maruburiregular.ttf</item>
+        <item>maruburisemibold.ttf</item>
+    </string-array>
 </resources>

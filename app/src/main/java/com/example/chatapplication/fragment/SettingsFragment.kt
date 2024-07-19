@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.preference.EditTextPreference
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.chatapplication.R
@@ -16,6 +17,13 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
+
+        val ListPreferences: ListPreference? = findPreference("font_style")
+        ListPreferences?.summaryProvider =
+            Preference.SummaryProvider<ListPreference> { preference ->
+                val text = preference.value
+                "현재 글자 폰트: $text"
+            }
 
         val editPreferences: EditTextPreference? = findPreference("font_size")
         editPreferences?.summaryProvider =
@@ -38,7 +46,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
                 val uid = sharedPref.getString("uid", "")
                 val map: Map<String, Int> = mapOf("font_size" to value)
                 val mDbRef = FirebaseDatabase.getInstance().reference
-                mDbRef.child("user").child(uid.toString()).updateChildren(map)
+                mDbRef.child("user").child(uid.toString()).child("font").updateChildren(map)
                 true
             }
         }

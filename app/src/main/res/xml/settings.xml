@@ -6,5 +6,11 @@
         app:key="font_size"
         android:inputType="number"
         app:title="글자 크기 설정"/>
+
+    <ListPreference
+        app:key="font_style"
+        app:title="글자 폰트 설정"
+        android:entries="@array/font_style"
+        app:entryValues="@array/font_style_value"/>
     </PreferenceCategory>
 </PreferenceScreen>
