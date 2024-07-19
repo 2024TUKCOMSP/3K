@@ -49,6 +49,6 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun addUserToDatabase(name: String, email:String, uId: String){
-        mDbRef.child("user").child(uId).setValue(User(name, email, uId, 14))
+        mDbRef.child("user").child(uId).setValue(User(name, email, uId, 14, "maruburibold.ttf"))
     }
 }
