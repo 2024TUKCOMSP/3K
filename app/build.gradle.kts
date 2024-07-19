@@ -49,10 +49,15 @@ dependencies {
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.database.ktx)
     implementation(libs.firebase.database)
+    implementation(libs.androidx.preference)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-database-ktx")
+    implementation("androidx.preference:preference-ktx:1.2.1") {
+        exclude(group= "android.lifecycle", module = "lifecycle-viewmodel")
+        exclude(group= "android.lifecycle", module = "lifecycle-viewmodel-ktx")
+    }
 
 }

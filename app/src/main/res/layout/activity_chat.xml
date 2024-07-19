@@ -16,6 +16,7 @@
         android:layout_alignParentStart="true"/>
 
     <EditText
+        android:paddingLeft="5dp"
         android:layout_toLeftOf="@id/chatActivity_button"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

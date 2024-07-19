@@ -1,7 +1,9 @@
 package com.example.chatapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chatapplication.databinding.ActivityChatBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -34,8 +36,14 @@ class ChatActivity : AppCompatActivity() {
         receiverName = intent.getStringExtra("name").toString()
         receiverUid = intent.getStringExtra("uId").toString()
 
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val font_size : String? = sharedPreferences.getString("font_size", "14")
+        val font_style_str : String? = sharedPreferences.getString("font_style", "maruburibold")
+        val font_stylr_id = this.resources.getIdentifier(font_style_str, "font", packageName)
+        Log.d("fdsafsafsa", font_stylr_id.toString())
+
         binding.chatActivityRecyclerview.layoutManager = LinearLayoutManager(this)
-        val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName)
+        val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName, font_size!!.toLong(), font_stylr_id)
         binding.chatActivityRecyclerview.adapter = messageAdapter
 
         mAuth = FirebaseAuth.getInstance()
@@ -50,16 +58,18 @@ class ChatActivity : AppCompatActivity() {
         supportActionBar?.title = receiverName
 
         binding.chatActivityButton.setOnClickListener {
-            val message = binding.chatActivityEdittext.text.toString()
-            val messageObject = Message(message, senderUid)
+            if(!binding.chatActivityEdittext.text.isEmpty()) {
+                val message = binding.chatActivityEdittext.text.toString()
+                val messageObject = Message(message, senderUid)
 
-            mDbRef.child("chats").child(senderRoom).child("messages").push()
-                .setValue(messageObject).addOnSuccessListener {
-                    mDbRef.child("chats").child(receiverRoom).child("messages").push()
-                        .setValue(messageObject)
-                }
+                mDbRef.child("chats").child(senderRoom).child("messages").push()
+                    .setValue(messageObject).addOnSuccessListener {
+                        mDbRef.child("chats").child(receiverRoom).child("messages").push()
+                            .setValue(messageObject)
+                    }
 
-            binding.chatActivityEdittext.setText("")
+                binding.chatActivityEdittext.setText("")
+            }
         }
 
         mDbRef.child("chats").child(senderRoom).child("messages")

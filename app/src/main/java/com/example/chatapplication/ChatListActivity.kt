@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.chatapplication.databinding.ActivityChatListBinding
+import com.example.chatapplication.fragment.AccountFragment
 import com.example.chatapplication.fragment.PeopleFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -26,6 +27,11 @@ class ChatListActivity : AppCompatActivity() {
                         supportFragmentManager.beginTransaction().replace(R.id.chatlist_framelayout,
                             peopleFragment).commit()
                     }
+                    R.id.action_Account -> {
+                        val accountFragment = AccountFragment()
+                        supportFragmentManager.beginTransaction().replace(R.id.chatlist_framelayout,
+                            accountFragment).commit()
+                    }
                 }
                 true
             }
@@ -34,13 +40,17 @@ class ChatListActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menu?.add(0,0,0,"로그아웃")
+        menu?.add(0,0,0,"설정")
+        menu?.add(0,1,0,"로그아웃")
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             0 -> {
+                startActivity(Intent(this@ChatListActivity, SettingActivity::class.java))
+            }
+            1 -> {
                 AlertDialog.Builder(this).run{
                     setTitle("로그아웃")
                     setIcon(android.R.drawable.ic_dialog_info)
