@@ -49,10 +49,11 @@ class LoginActivity : AppCompatActivity() {
                         val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
                         val mDbRef = Firebase.database.reference
                         putString("uid", uid)
-                        mDbRef.child("user").child(uid).child("font_size").addValueEventListener(object : ValueEventListener {
+                        mDbRef.child("user").child(uid).child("font").addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
-                                val font = snapshot.value.toString()
-                                putString("font_size", font)
+                                for(shot in snapshot.children) {
+                                    putString(shot.key, shot.value.toString())
+                                }
                                 commit()
                             }
                             override fun onCancelled(error: DatabaseError) { }
