@@ -37,9 +37,11 @@ class ChatActivity : AppCompatActivity() {
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val font_size : String? = sharedPreferences.getString("font_size", "14")
+        val font_style_str : String? = sharedPreferences.getString("font_style", "maruburibold.ttf")
+        val font_stylr_id = this.resources.getIdentifier(font_style_str, "font", packageName)
 
         binding.chatActivityRecyclerview.layoutManager = LinearLayoutManager(this)
-        val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName, font_size!!.toInt())
+        val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName, font_size!!.toLong(), font_stylr_id)
         binding.chatActivityRecyclerview.adapter = messageAdapter
 
         mAuth = FirebaseAuth.getInstance()
@@ -54,16 +56,18 @@ class ChatActivity : AppCompatActivity() {
         supportActionBar?.title = receiverName
 
         binding.chatActivityButton.setOnClickListener {
-            val message = binding.chatActivityEdittext.text.toString()
-            val messageObject = Message(message, senderUid)
+            if(!binding.chatActivityEdittext.text.isEmpty()) {
+                val message = binding.chatActivityEdittext.text.toString()
+                val messageObject = Message(message, senderUid)
 
-            mDbRef.child("chats").child(senderRoom).child("messages").push()
-                .setValue(messageObject).addOnSuccessListener {
-                    mDbRef.child("chats").child(receiverRoom).child("messages").push()
-                        .setValue(messageObject)
-                }
+                mDbRef.child("chats").child(senderRoom).child("messages").push()
+                    .setValue(messageObject).addOnSuccessListener {
+                        mDbRef.child("chats").child(receiverRoom).child("messages").push()
+                            .setValue(messageObject)
+                    }
 
-            binding.chatActivityEdittext.setText("")
+                binding.chatActivityEdittext.setText("")
+            }
         }
 
         mDbRef.child("chats").child(senderRoom).child("messages")

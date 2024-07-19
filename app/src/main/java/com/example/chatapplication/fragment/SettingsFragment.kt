@@ -21,9 +21,18 @@ class SettingsFragment : PreferenceFragmentCompat(),
         val ListPreferences: ListPreference? = findPreference("font_style")
         ListPreferences?.summaryProvider =
             Preference.SummaryProvider<ListPreference> { preference ->
-                val text = preference.value
+                val text = preference.entry
                 "현재 글자 폰트: $text"
             }
+
+        ListPreferences!!.setOnPreferenceChangeListener { preference, newValue ->
+            val sharedPref = requireContext().getSharedPreferences("com.example.chatapplication_preferences", Context.MODE_PRIVATE)
+            val uid = sharedPref.getString("uid", "")
+            val map: Map<String, String> = mapOf("font_style" to newValue.toString())
+            val mDbRef = FirebaseDatabase.getInstance().reference
+            mDbRef.child("user").child(uid.toString()).child("font").updateChildren(map)
+            true
+        }
 
         val editPreferences: EditTextPreference? = findPreference("font_size")
         editPreferences?.summaryProvider =
