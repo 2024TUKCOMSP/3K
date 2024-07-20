@@ -40,7 +40,6 @@ class ChatActivity : AppCompatActivity() {
         val font_size : String? = sharedPreferences.getString("font_size", "14")
         val font_style_str : String? = sharedPreferences.getString("font_style", "maruburibold")
         val font_stylr_id = this.resources.getIdentifier(font_style_str, "font", packageName)
-        Log.d("fdsafsafsa", font_stylr_id.toString())
 
         binding.chatActivityRecyclerview.layoutManager = LinearLayoutManager(this)
         val messageAdapter: MessageAdapter = MessageAdapter(this, messageList, receiverName, font_size!!.toLong(), font_stylr_id)

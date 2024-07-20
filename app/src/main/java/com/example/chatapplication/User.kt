@@ -6,10 +6,9 @@ data class User(
     var name: String,
     var email: String,
     var uId: String,
-    var font: Font,
-    var ImageUrl: String
+    var font: Font
 ){
-    constructor(): this("", "", "", Font(0, ""), "")
+    constructor(): this("", "", "", Font(0, ""))
 }
 
 data class Font(
