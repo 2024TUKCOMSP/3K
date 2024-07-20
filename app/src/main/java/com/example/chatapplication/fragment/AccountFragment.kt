@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.chatapplication.R
 import com.example.chatapplication.databinding.FragmentAccountBinding
@@ -34,10 +35,20 @@ class AccountFragment : Fragment() {
         val uid = sharedPref.getString("uid", "")
         mDbRef = FirebaseDatabase.getInstance().reference
         binding = FragmentAccountBinding.inflate(layoutInflater)
+        binding.accountfragmentImage.clipToOutline = true
 
         nameDownload(uid!!)
         imageDownload(uid)
-        binding.accountfragmentImage.clipToOutline = true
+
+        binding.accountfragmentBtn.setOnClickListener {
+            if(binding.accountfragmentName.text.isEmpty())
+                Toast.makeText(requireContext(), "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            else {
+                var name = binding.accountfragmentName.text.toString()
+                val map: Map<String, String> = mapOf("name" to name)
+                mDbRef.child("user").child(uid).updateChildren(map)
+            }
+        }
         return binding.root
     }
 
