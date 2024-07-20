@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.exclude
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -39,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:31.2.2"))
+    implementation("com.google.firebase:firebase-storage-ktx")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
