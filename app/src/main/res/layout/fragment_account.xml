@@ -15,6 +15,7 @@
 
     <EditText
         android:id="@+id/accountfragment_Name"
+        android:gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="설정할 이름을 입력해주세요."
