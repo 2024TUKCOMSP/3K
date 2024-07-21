@@ -75,7 +75,6 @@ class ChatActivity : AppCompatActivity() {
             .addValueEventListener(object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     messageList.clear()
-
                     for(postSnapshat in snapshot.children) {
                         val message = postSnapshat.getValue(Message::class.java)
                         messageList.add(message!!)

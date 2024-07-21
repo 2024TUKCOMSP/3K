@@ -4,11 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Dimension
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class MessageAdapter(private val context: Context, private val messageList: ArrayList<Message>,
                      private val name: String, val size: Long, val style: Int):
@@ -37,10 +41,19 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
             viewHolder.sendMessage.typeface = ResourcesCompat.getFont(context, style)
         } else {
             val viewHolder = holder as RecvViewHolder
-            viewHolder.recvMessage.text = currentMessage.message
             viewHolder.recvName.text = name
+            viewHolder.recvMessage.text = currentMessage.message
             viewHolder.recvMessage.setTextSize(Dimension.SP, size.toFloat())
             viewHolder.recvMessage.typeface = ResourcesCompat.getFont(context, style)
+
+            val storage = Firebase.storage
+            val storageRef = storage.getReference("image")
+            val mountainsRef = storageRef.child("${currentMessage.sendId}.png")
+            val downloadTask = mountainsRef.downloadUrl
+            downloadTask.addOnSuccessListener { uri ->
+                Glide.with(context).load(uri).into(viewHolder.recvImage)
+            }.addOnFailureListener {
+            }
         }
     }
 
@@ -67,5 +80,6 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
     class RecvViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val recvMessage: TextView = itemView.findViewById(R.id.recv_text_message)
         val recvName: TextView = itemView.findViewById(R.id.recv_text_name)
+        val recvImage: ImageView = itemView.findViewById(R.id.recv_image_profile)
     }
 }
