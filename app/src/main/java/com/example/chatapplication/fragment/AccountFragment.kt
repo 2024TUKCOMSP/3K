@@ -3,16 +3,20 @@ package com.example.chatapplication.fragment
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContentProviderCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.bumptech.glide.Glide
 import com.example.chatapplication.R
 import com.example.chatapplication.databinding.FragmentAccountBinding
@@ -25,6 +29,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import java.io.ByteArrayOutputStream
 
 class AccountFragment : Fragment() {
     lateinit var binding: FragmentAccountBinding
@@ -48,7 +53,7 @@ class AccountFragment : Fragment() {
 
         nameDownload(uid!!)
         imageDownload(uid)
-
+        var uri = Uri.EMPTY
 
         val reqGalleryLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()) {
@@ -62,7 +67,10 @@ class AccountFragment : Fragment() {
                 var inputStream = requireContext().contentResolver.openInputStream(it.data!!.data!!)
                 val bitmap = BitmapFactory.decodeStream(inputStream, null, option)
                 inputStream!!.close()
-                if(bitmap != null) binding.accountfragmentImage.setImageBitmap(bitmap)
+                if(bitmap != null) {
+                    binding.accountfragmentImage.setImageBitmap(bitmap)
+                    uri = it.data?.data
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -81,6 +89,8 @@ class AccountFragment : Fragment() {
                 var name = binding.accountfragmentName.text.toString()
                 val map: Map<String, String> = mapOf("name" to name)
                 mDbRef.child("user").child(uid).updateChildren(map)
+                if(uri != Uri.EMPTY)
+                    mountainsRef.putFile(uri)
                 Toast.makeText(requireContext(), "성공적으로 저장되었습니다.", Toast.LENGTH_SHORT).show()
             }
         }
@@ -123,19 +133,10 @@ class AccountFragment : Fragment() {
     }
 
     private fun imageDownload(uid: String?) {
-
         val downloadTask = mountainsRef.downloadUrl
         downloadTask.addOnSuccessListener { uri ->
             Glide.with(requireContext()).load(uri).into(binding.accountfragmentImage)
         }.addOnFailureListener {
         }
-    }
-
-    private fun imageDelete(uid: String?) {
-        mountainsRef.delete()
-    }
-
-    private fun imageUpload(uri: Uri, uid: String?) {
-        mountainsRef.putFile(uri)
     }
 }
