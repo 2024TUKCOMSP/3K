@@ -162,13 +162,6 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this@LoginActivity, "데이터베이스 오류", Toast.LENGTH_SHORT).show()
                         }
                     })
-
-                    val intent = Intent(
-                        applicationContext,
-                        ChatListActivity::class.java
-                    )
-                    startActivity(intent)
-                    finish()
                 } else {
                     Toast.makeText(this@LoginActivity, "구글 로그인 실패", Toast.LENGTH_SHORT).show()
                 }
