@@ -19,6 +19,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -32,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
     var RC_SIGN_IN = 9000
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var mDbRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -132,14 +134,37 @@ class LoginActivity : AppCompatActivity() {
                 this
             ) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this@LoginActivity, "구글 로그인 성공", Toast.LENGTH_SHORT).show()
+                    val uId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+                    val mDbRef = Firebase.database.reference
+                    val name = account.displayName.toString()
+                    val email = account.email.toString()
+
+                    mDbRef.child("user").child(uId).addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (!snapshot.exists()) {
+                                // 데이터베이스에 해당 유저 정보가 없으면 저장
+                                mDbRef.child("user").child(uId).setValue(User(name, email, uId, Font(14, "maruburibold")))
+                            }
+
+                            // ChatListActivity로 이동
+                            val intent = Intent(applicationContext, ChatListActivity::class.java)
+                            startActivity(intent)
+                            finish() // LoginActivity 종료
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            // 에러 처리
+                            Log.e("TAG", "데이터베이스 읽기 실패", error.toException())
+                            Toast.makeText(this@LoginActivity, "데이터베이스 오류", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
                     val intent = Intent(
                         applicationContext,
                         ChatListActivity::class.java
                     )
-                    intent.putExtra("UserName", account.displayName)
-                    intent.putExtra("PhotoUrl", account.photoUrl)
                     startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this@LoginActivity, "구글 로그인 실패", Toast.LENGTH_SHORT).show()
                 }
