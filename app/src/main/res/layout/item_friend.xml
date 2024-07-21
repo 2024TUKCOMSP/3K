@@ -8,6 +8,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/frienditem_image"
+        android:background="@drawable/profile_background"
         android:src="@drawable/default_image"/>
 
     <TextView

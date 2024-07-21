@@ -36,6 +36,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>):
         val downloadTask = mountainsRef.downloadUrl
         downloadTask.addOnSuccessListener { uri ->
             Glide.with(context).load(uri).into(binding.frienditemImage)
+            binding.frienditemImage.clipToOutline = true
         }.addOnFailureListener {
         }
 

@@ -52,6 +52,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
             val downloadTask = mountainsRef.downloadUrl
             downloadTask.addOnSuccessListener { uri ->
                 Glide.with(context).load(uri).into(viewHolder.recvImage)
+                viewHolder.recvImage.clipToOutline = true
             }.addOnFailureListener {
             }
         }
