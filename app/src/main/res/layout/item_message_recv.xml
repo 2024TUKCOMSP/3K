@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/recv_text_message"
             android:layout_alignBottom="@id/recv_text_message"
+            android:gravity="left"
             android:text="타임 스탬프"
             android:textSize="10dp" />
     </RelativeLayout>

@@ -16,6 +16,7 @@
             android:layout_toLeftOf="@id/send_text_message"
             android:layout_alignBottom="@id/send_text_message"
             android:text="타임 스탬프"
+            android:gravity="right"
             android:textSize="10dp" />
 
         <TextView

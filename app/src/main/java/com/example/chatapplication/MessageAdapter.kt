@@ -1,6 +1,7 @@
 package com.example.chatapplication
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ServerValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
@@ -39,12 +41,14 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
             viewHolder.sendMessage.text = currentMessage.message
             viewHolder.sendMessage.setTextSize(Dimension.SP, size.toFloat())
             viewHolder.sendMessage.typeface = ResourcesCompat.getFont(context, style)
+            viewHolder.sendTimestamp.text = currentMessage.timestamp
         } else {
             val viewHolder = holder as RecvViewHolder
             viewHolder.recvName.text = name
             viewHolder.recvMessage.text = currentMessage.message
             viewHolder.recvMessage.setTextSize(Dimension.SP, size.toFloat())
             viewHolder.recvMessage.typeface = ResourcesCompat.getFont(context, style)
+            viewHolder.recvTimestamp.text = currentMessage.timestamp
 
             val storage = Firebase.storage
             val storageRef = storage.getReference("image")

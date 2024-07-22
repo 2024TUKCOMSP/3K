@@ -1,5 +1,6 @@
 package com.example.chatapplication
 
+import com.google.android.gms.common.internal.Objects
 import com.google.firebase.Timestamp
 
 data class Message(
