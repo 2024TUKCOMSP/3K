@@ -47,6 +47,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:31.2.2"))
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.kakao.sdk:v2-user:2.20.3")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
