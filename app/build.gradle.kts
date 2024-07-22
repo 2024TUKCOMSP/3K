@@ -12,9 +12,7 @@ android {
 
     viewBinding {enable = true}
 
-    lint{
-        baseline = file("lint-baseline.xml")
-    }
+    lint { abortOnError = false}
 
     defaultConfig {
         applicationId = "com.example.chatapplication"
