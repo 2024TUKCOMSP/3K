@@ -75,6 +75,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
     // 보낸 쪽
     class SendViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val sendMessage: TextView = itemView.findViewById(R.id.send_text_message)
+        val sendTimestamp: TextView = itemView.findViewById(R.id.send_text_time)
     }
 
     // 받은 쪽
@@ -82,5 +83,6 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
         val recvMessage: TextView = itemView.findViewById(R.id.recv_text_message)
         val recvName: TextView = itemView.findViewById(R.id.recv_text_name)
         val recvImage: ImageView = itemView.findViewById(R.id.recv_image_profile)
+        val recvTimestamp: TextView = itemView.findViewById(R.id.recv_text_time)
     }
 }
