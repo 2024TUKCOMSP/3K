@@ -38,6 +38,11 @@ class LoginActivity : AppCompatActivity() {
             if(!email.isEmpty() || !password.isEmpty())
                 login(email, password)
         }
+
+        binding.findPwBtn.setOnClickListener{
+            val intent = Intent(this, FindPwActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun login(email: String, password: String){
