@@ -6,7 +6,7 @@ import android.media.session.MediaSession.Token
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.kakao.sdk.common.util.Utility
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import com.example.chatapplication.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
