@@ -34,7 +34,6 @@ class PeopleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPeopleBinding.inflate(layoutInflater)
-        val view = inflater.inflate(R.layout.fragment_people, container, false)
 
         // 인증 초기화
         mAuth = Firebase.auth

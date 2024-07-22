@@ -52,7 +52,7 @@ class AccountFragment : Fragment() {
         mountainsRef = storageRef.child("$uid.png")
 
         nameDownload(uid!!)
-        imageDownload(uid)
+        imageDownload()
         var uri = Uri.EMPTY
 
         val reqGalleryLauncher = registerForActivityResult(
@@ -132,7 +132,7 @@ class AccountFragment : Fragment() {
         })
     }
 
-    private fun imageDownload(uid: String?) {
+    private fun imageDownload() {
         val downloadTask = mountainsRef.downloadUrl
         downloadTask.addOnSuccessListener { uri ->
             Glide.with(requireContext()).load(uri).into(binding.accountfragmentImage)

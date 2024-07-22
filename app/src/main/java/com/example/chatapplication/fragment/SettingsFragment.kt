@@ -25,7 +25,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
                 "현재 글자 폰트: $text"
             }
 
-        ListPreferences!!.setOnPreferenceChangeListener { preference, newValue ->
+        ListPreferences!!.setOnPreferenceChangeListener { _, newValue ->
             val sharedPref = requireContext().getSharedPreferences("com.example.chatapplication_preferences", Context.MODE_PRIVATE)
             val uid = sharedPref.getString("uid", "")
             val map: Map<String, String> = mapOf("font_style" to newValue.toString())
@@ -44,7 +44,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
                     "현재 글자 사이즈: $text"
             }
 
-        editPreferences!!.setOnPreferenceChangeListener { preference, newValue ->
+        editPreferences!!.setOnPreferenceChangeListener { _, newValue ->
             val value = newValue.toString().toInt()
             if(30 < value || value < 8) {
                 Toast.makeText(requireContext(), "8~30 사이의 값만 가능합니다.", Toast.LENGTH_SHORT).show()

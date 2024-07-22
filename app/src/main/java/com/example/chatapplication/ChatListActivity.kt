@@ -11,6 +11,7 @@ import com.example.chatapplication.fragment.AccountFragment
 import com.example.chatapplication.fragment.PeopleFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+@Suppress("DEPRECATION")
 class ChatListActivity : AppCompatActivity() {
     lateinit var binding: ActivityChatListBinding
     override fun onCreate(savedInstanceState: Bundle?) {

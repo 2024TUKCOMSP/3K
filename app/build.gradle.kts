@@ -12,6 +12,10 @@ android {
 
     viewBinding {enable = true}
 
+    lint{
+        baseline = file("lint-baseline.xml")
+    }
+
     defaultConfig {
         applicationId = "com.example.chatapplication"
         minSdk = 24
