@@ -1,5 +1,8 @@
 package com.example.chatapplication
 
+import android.content.ContentResolver
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class SignUpActivity : AppCompatActivity() {
     lateinit var binding: ActivitySignUpBinding
@@ -21,6 +25,7 @@ class SignUpActivity : AppCompatActivity() {
 
         mAuth = Firebase.auth
         mDbRef = Firebase.database.reference
+
 
         binding.signUpBtn.setOnClickListener {
             val name = binding.nameEdit.text.toString().trim()
@@ -49,6 +54,17 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun addUserToDatabase(name: String, email:String, uId: String){
+        val storage = Firebase.storage
+        val storageRef = storage.getReference("image")
+        val mountainsRef = storageRef.child("${uId}.png")
+        mountainsRef.putFile(getResourceUri(this))
         mDbRef.child("user").child(uId).setValue(User(name, email, uId, Font(14, "maruburibold")))
+    }
+
+    // drawable 파일 Uri
+    fun getResourceUri(context: Context): Uri {
+        val uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.resources.getResourcePackageName(R.drawable.default_image)
+                + '/' + context.resources.getResourceTypeName(R.drawable.default_image) + '/' + context.resources.getResourceEntryName(R.drawable.default_image));
+        return uri
     }
 }

@@ -1,5 +1,7 @@
 package com.example.chatapplication
 
+import android.net.Uri
+
 data class User(
     var name: String,
     var email: String,
