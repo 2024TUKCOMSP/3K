@@ -1,4 +1,4 @@
-name: Android CI
+name: Android CI CD
 
 on:
   push:
@@ -19,6 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
+        
+    - name: Set up SDK
+      uses: android-actions/setup-android@v2
 
     - name: Access MAPS_API_KEY
       env:
@@ -40,3 +43,17 @@ jobs:
        script: ./gradlew connectedCheck --stacktrace
        run: ./gradlew connectedAndroidTest
 
+    - name: Assemble
+      run: ./gradlew assemble
+      
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v3
+      with:
+       name: debug
+       path: ./app/build/outputs/apk/debug/app-debug.apk
+
+    - name: Upload Release APK
+      uses: actions/upload-artifact@v3
+      with:
+       name: release
+       path: ./app/build/outputs/apk/release/app-release-unsigned.apk
