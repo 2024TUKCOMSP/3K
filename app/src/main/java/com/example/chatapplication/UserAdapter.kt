@@ -28,7 +28,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>):
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as UserViewHolder).binding
         val currentUser = userList[position]
-        binding.frienditemTextview.text = currentUser.name
+        binding.frienditemId.text = currentUser.name
 
         val storage = Firebase.storage
         val storageRef = storage.getReference("image")
