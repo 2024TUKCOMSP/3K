@@ -55,15 +55,11 @@ jobs:
       env:
         BUILD_TOOLS_VERSION: "34.0.0"
 
-    - name: Build Release APK
-      run: |
-          ./gradlew :app:assembleRelease
-
-    - name: Upload Release Build to Artifacts
+    - name: Upload Release APK
       uses: actions/upload-artifact@v3
       with:
-        name: release-artifacts
-        path: app/build/outputs/apk/release/
+        name: release
+        path: app/build/outputs/apk/release/app-release-unsigned-signed.apk
         if-no-files-found: error
 
     - name: Upload Debug APK
