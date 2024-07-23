@@ -39,6 +39,11 @@ class LoginActivity : AppCompatActivity() {
                 login(email, password)
         }
 
+        binding.findIdBtn.setOnClickListener {
+            val intent = Intent(this, FindIdActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.findPwBtn.setOnClickListener{
             val intent = Intent(this, FindPwActivity::class.java)
             startActivity(intent)

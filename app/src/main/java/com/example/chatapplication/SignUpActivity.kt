@@ -31,21 +31,22 @@ class SignUpActivity : AppCompatActivity() {
             val name = binding.nameEdit.text.toString().trim()
             val email = binding.emailEdit.text.toString().trim()
             val password = binding.passwordEdit.text.toString().trim()
+            val phone = binding.phoneEdit.text.toString().trim()
 
-            if(email == "" || password == "" || name == "") {
+            if(email == "" || phone == "" || password == "" || name == "") {
                 Toast.makeText(this, "형식이 올바르지 않습니다", Toast.LENGTH_SHORT).show()
             } else {
-                signUp(name, email, password)
+                signUp(name, phone, email, password)
             }
         }
     }
 
-    private fun signUp(name: String, email: String, password: String) {
+    private fun signUp(name: String, phone: String, email: String, password: String) {
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "회원가입 완료", Toast.LENGTH_SHORT).show()
-                    addUserToDatabase(name, email, mAuth.currentUser?.uid!!)
+                    addUserToDatabase(name, phone, email, mAuth.currentUser?.uid!!)
                     finish()
                 } else {
                     Toast.makeText(this, "회원가입 실패", Toast.LENGTH_SHORT).show()
@@ -53,12 +54,12 @@ class SignUpActivity : AppCompatActivity() {
             }
     }
 
-    private fun addUserToDatabase(name: String, email:String, uId: String){
+    private fun addUserToDatabase(name: String, phone: String, email:String, uId: String){
         val storage = Firebase.storage
         val storageRef = storage.getReference("image")
         val mountainsRef = storageRef.child("${uId}.png")
         mountainsRef.putFile(getResourceUri(this))
-        mDbRef.child("user").child(uId).setValue(User(name, email, uId, Font(14, "maruburibold")))
+        mDbRef.child("user").child(uId).setValue(User(name, phone, email, uId, Font(14, "maruburibold")))
     }
 
     // drawable 파일 Uri
