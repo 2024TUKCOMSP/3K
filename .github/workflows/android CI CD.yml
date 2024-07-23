@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -29,4 +29,14 @@ jobs:
       run: chmod +x gradlew
     - name: Clean Bulid
       run: ./gradlew clean build
+
+    - name: Run Android Test
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+       api-level: 24
+       target: default
+       arch: x86
+       profile: Nexus 6
+       script: ./gradlew connectedCheck --stacktrace
+       run: ./gradlew connectedAndroidTest
 
