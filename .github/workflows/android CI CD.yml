@@ -43,17 +43,31 @@ jobs:
        script: ./gradlew connectedCheck --stacktrace
        run: ./gradlew connectedAndroidTest
 
-    - name: Assemble
-      run: ./gradlew assemble
-      
-    - name: Upload Debug APK
+    - name: Sign APK
+      id: sign
+      uses: r0adkll/sign-android-release@v1
+      with:
+        releaseDirectory: app/build/outputs/apk/release
+        signingKeyBase64: ${{ secrets.KEY_STORE_JKS_BASE64 }}
+        alias: ${{ secrets.KEY_ALIAS }}
+        keyStorePassword: ${{ secrets.STORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEY_PASSWORD }}
+      env:
+        BUILD_TOOLS_VERSION: "34.0.0"
+
+    - name: Build Release APK
+      run: |
+          ./gradlew :app:assembleRelease
+
+    - name: Upload Release Build to Artifacts
       uses: actions/upload-artifact@v3
+      with:
+        name: release-artifacts
+        path: app/build/outputs/apk/release/
+        if-no-files-found: error
+
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v4
       with:
        name: debug
        path: ./app/build/outputs/apk/debug/app-debug.apk
-
-    - name: Upload Release APK
-      uses: actions/upload-artifact@v3
-      with:
-       name: release
-       path: ./app/build/outputs/apk/release/app-release-unsigned.apk
