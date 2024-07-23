@@ -41,7 +41,6 @@ class LoginActivity : AppCompatActivity() {
     var RC_SIGN_IN = 9000
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private lateinit var mDbRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
                                 override fun onCancelled(error: DatabaseError) {}
                             })
                     }
-                    val intent: Intent = Intent(
+                    val intent = Intent(
                         this@LoginActivity,
                         ChatListActivity::class.java
                     )
@@ -165,7 +164,7 @@ class LoginActivity : AppCompatActivity() {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             if (!snapshot.exists()) {
                                 // 데이터베이스에 해당 유저 정보가 없으면 저장
-                                mDbRef.child("user").child(uId).setValue(User(name, email, uId, Font(14, "maruburibold")))
+                                mDbRef.child("user").child(uId).setValue(User(name,"null", email, uId, Font(14, "maruburibold")))
                             }
 
                             // ChatListActivity로 이동
@@ -190,7 +189,6 @@ class LoginActivity : AppCompatActivity() {
         // 카카오계정으로 로그인 공통 callback 구성
 // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-            var name = ""
             if (error != null) {
                 Log.e("TAG", "카카오계정으로 로그인 실패", error)
             } else if (token != null) {
@@ -249,7 +247,7 @@ class LoginActivity : AppCompatActivity() {
                         if (!snapshot.exists()) {
                             // 데이터베이스에 해당 유저 정보가 없으면 저장
                             mDbRef.child("user").child(uId)
-                                .setValue(User(name, email, uId, Font(14, "maruburibold")))
+                                .setValue(User(name,"null",email, uId, Font(14, "maruburibold")))
                         }
 
                         // ChatListActivity로 이동
