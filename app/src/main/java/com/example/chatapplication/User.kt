@@ -1,14 +1,13 @@
 package com.example.chatapplication
 
-import android.net.Uri
-
 data class User(
     var name: String,
+    var phone: String,
     var email: String,
     var uId: String,
     var font: Font
 ){
-    constructor(): this("", "", "", Font(0, ""))
+    constructor(): this("", "", "", "", Font(0, ""))
 }
 
 data class Font(
