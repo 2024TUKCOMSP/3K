@@ -17,6 +17,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.oAuthCredential
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -28,6 +29,8 @@ import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class LoginActivity : AppCompatActivity() {
@@ -66,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
             .requestEmail()
             .build()
 
-        KakaoSdk.init(this, R.string.kakao_my_web.toString())
+        KakaoSdk.init(this, getString(R.string.kakao_my_web))
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
@@ -187,10 +190,12 @@ class LoginActivity : AppCompatActivity() {
         // 카카오계정으로 로그인 공통 callback 구성
 // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+            var name = ""
             if (error != null) {
                 Log.e("TAG", "카카오계정으로 로그인 실패", error)
             } else if (token != null) {
-                Log.i("TAG", "카카오계정으로 로그인 성공 ${token.accessToken}")
+                firebaseAuthWithCustomToken(token.idToken!!)
+
             }
         }
 
@@ -215,6 +220,53 @@ class LoginActivity : AppCompatActivity() {
         } else {
             UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
         }
+    }
+
+    private fun firebaseAuthWithCustomToken(idToken: String) {
+        val providerId = "oidc.kakao" // As registered in Firebase console.
+        val credential = oAuthCredential(providerId) {
+            setIdToken(idToken) // ID token from OpenID Connect flow.
+        }
+        Firebase.auth
+            .signInWithCredential(credential)
+            .addOnSuccessListener { authResult ->
+                val uId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+                val mDbRef = Firebase.database.reference
+                lateinit var name: String
+                lateinit var email: String
+                UserApiClient.instance.me { user, error ->
+                    if (error != null) {
+                        Log.e("TAG", "사용자 정보 요청 실패", error)
+                    } else if (user != null) {
+                        Log.i("TAG", "사용자 정보 요청 성공")
+                        name = user.kakaoAccount?.profile?.nickname.toString()
+                        email = user.kakaoAccount?.email.toString()
+                    }
+                }
+
+                mDbRef.child("user").child(uId).addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (!snapshot.exists()) {
+                            // 데이터베이스에 해당 유저 정보가 없으면 저장
+                            mDbRef.child("user").child(uId)
+                                .setValue(User(name, email, uId, Font(14, "maruburibold")))
+                        }
+
+                        // ChatListActivity로 이동
+                        val intent = Intent(applicationContext, ChatListActivity::class.java)
+                        startActivity(intent)
+                        finish() // LoginActivity 종료
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        // 에러 처리
+                        Log.e("TAG", "데이터베이스 읽기 실패", error.toException())
+                        Toast.makeText(this@LoginActivity, "데이터베이스 오류", Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
+            .addOnFailureListener { e ->
+                Log.w("TAG", "failure", e)
+            }
     }
 }
 
