@@ -28,6 +28,11 @@ jobs:
         APOD_API_KEY: ${{ secrets.MAPS_API_KEY }}
       run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > ./app/google-services.json
       
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Bulid
+      run: ./gradlew build
+
     - name: Sign APK
       id: sign
       uses: r0adkll/sign-android-release@v1
