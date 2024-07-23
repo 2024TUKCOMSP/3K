@@ -25,11 +25,24 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/recv_text_message"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/left_bubble"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/recv_text_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/left_bubble"/>
+        <TextView
+            android:id="@+id/recv_text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/recv_text_message"
+            android:layout_alignBottom="@id/recv_text_message"
+            android:gravity="left"
+            android:text="타임 스탬프"
+            android:textSize="10dp" />
+    </RelativeLayout>
 
 </LinearLayout>
