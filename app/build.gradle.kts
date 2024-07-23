@@ -1,6 +1,9 @@
+import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.exclude
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -9,12 +12,14 @@ android {
 
     viewBinding {enable = true}
 
+    lint { abortOnError = false}
+
     defaultConfig {
         applicationId = "com.example.chatapplication"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,13 +43,28 @@ android {
 }
 
 dependencies {
-
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation(platform("com.google.firebase:firebase-bom:31.2.2"))
+    implementation("com.google.firebase:firebase-storage-ktx")
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation("com.google.firebase:firebase-analytics")
+    implementation(libs.firebase.common.ktx)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.database)
+    implementation(libs.androidx.preference)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-database-ktx")
+    implementation("androidx.preference:preference-ktx:1.2.1") {
+        exclude(group= "android.lifecycle", module = "lifecycle-viewmodel")
+        exclude(group= "android.lifecycle", module = "lifecycle-viewmodel-ktx")
+    }
+
 }

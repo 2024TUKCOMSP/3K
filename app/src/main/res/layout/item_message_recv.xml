@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/recv_linear_dest"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/recv_image_profile"
+            android:background="@drawable/profile_background"
+            android:src="@drawable/default_image"/>
+
+        <TextView
+            android:id="@+id/recv_text_name"
+            android:text="이름"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/recv_text_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/left_bubble"/>
+        <TextView
+            android:id="@+id/recv_text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/recv_text_message"
+            android:layout_alignBottom="@id/recv_text_message"
+            android:gravity="left"
+            android:text="타임 스탬프"
+            android:textSize="10dp" />
+    </RelativeLayout>
+
+</LinearLayout>

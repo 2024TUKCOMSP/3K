@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "develop" ]
 
 jobs:
   build:
@@ -20,7 +20,13 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Access MAPS_API_KEY
+      env:
+        APOD_API_KEY: ${{ secrets.MAPS_API_KEY }}
+      run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > ./app/google-services.json
+      
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Clean Bulid
       run: ./gradlew clean build
+
