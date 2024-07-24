@@ -42,7 +42,8 @@ class PeopleFragment : Fragment() {
         // 리스트 초기화
         userList = ArrayList()
         // 어댑터 초기화
-        adapter = UserAdapter(requireContext(), userList)
+        val my_uid = mAuth.currentUser?.uid.toString()
+        adapter = UserAdapter(requireContext(), userList, my_uid)
 
         binding.peoplefragmentRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         binding.peoplefragmentRecyclerview.adapter = adapter
@@ -62,7 +63,6 @@ class PeopleFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-
             }
 
         })

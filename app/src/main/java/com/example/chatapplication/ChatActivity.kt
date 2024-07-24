@@ -2,14 +2,12 @@ package com.example.chatapplication
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chatapplication.databinding.ActivityChatBinding
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,7 +15,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
-import java.time.LocalDateTime
+import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 
 class ChatActivity : AppCompatActivity() {
@@ -75,12 +73,8 @@ class ChatActivity : AppCompatActivity() {
 
         binding.chatActivityButton.setOnClickListener {
             if(!binding.chatActivityEdittext.text.isEmpty()) {
-                val current = LocalDateTime.now()
-                val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd\nHH:mm")
-                val formatted = current.format(formatter)
-
                 val message = binding.chatActivityEdittext.text.toString()
-                val messageObject = Message(message, senderUid, formatted)
+                val messageObject = Message(message, senderUid, ServerValue.TIMESTAMP)
 
                 mDbRef.child("chats").child(senderRoom).child("messages").push()
                     .setValue(messageObject).addOnSuccessListener {
