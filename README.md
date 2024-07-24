@@ -20,7 +20,10 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 ### 기능 구현
 - 파이어베이스를 통한 채팅 어플 구현
 - Realtime Database 및 채팅 UI 구현  
-- 로그인 기능 구현
+- 로그인, 로그아웃 기능 구현
+- 아이디, 비밀번호 찾기 기능 구현
+- 회원가입 기능 구현
+- 사용자 이름, 프로필사진 변경 기능 구현
 
 ### 참고 자료
 - [Firebase 서버를 통한 Android앱 HowlTalk 만들기, 하울][https://www.inflearn.com/course/howltalk-android-%EC%B1%84%ED%8C%85%EC%95%B1]
