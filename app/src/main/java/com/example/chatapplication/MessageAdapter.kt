@@ -38,7 +38,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentMessage = messageList[position]
         val time = currentMessage.timestamp.toString().toLong()
-        val formatter = SimpleDateFormat("yyyy.MM.dd\nHH:mm")
+        val formatter = SimpleDateFormat("yyyy.MM.dd HH:mm")
         val date = Date(time)
 
         if(holder.javaClass == SendViewHolder::class.java) {
