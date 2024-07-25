@@ -32,9 +32,19 @@
             android:id="@+id/recv_text_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="340dp"
             android:layout_marginBottom="5dp"
             android:text="메시지"
             android:background="@drawable/left_bubble"/>
+
+        <TextView
+            android:id="@+id/recv_text_read"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_toRightOf="@id/recv_text_message"
+            android:layout_alignBottom="@+id/recv_text_message"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/recv_text_time"
