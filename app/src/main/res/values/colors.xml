@@ -5,4 +5,5 @@
     <color name="yellow">#FFEB3B</color>
     <color name="green">#4CAF50</color>
     <color name="blue">#0067FF</color>
+    <color name="background_color_login">#E3F2FD</color>
 </resources>
