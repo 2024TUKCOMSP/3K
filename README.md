@@ -25,6 +25,16 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 - 회원가입 기능 구현
 - 사용자 이름, 프로필사진 변경 기능 구현
 
+### 기능 화면
+<p align="center">
+<img width="30% alt="로그인 화면" src="https://github.com/user-attachments/assets/1af14b90-f13d-4b33-82ed-ee6b1b9c904b">
+<img width="30% alt="채팅방 화면" src="https://github.com/user-attachments/assets/71f03b54-01e5-4e3e-b96d-061680255e6c">
+<img width="30% alt="채팅 화면" src="https://github.com/user-attachments/assets/64eee37a-6b1f-4581-bbac-b8d11954b950">
+<img width="30% alt="설정 화면" src="https://github.com/user-attachments/assets/1b833e31-07e2-4f9b-b4a0-09e806c2777f">
+<img width="30% alt="프로필 화면" src="https://github.com/user-attachments/assets/c838e708-7368-4059-b99e-bd06f1a62fb9">
+</p>
+
+
 ### 참고 자료
 - [Firebase 서버를 통한 Android앱 HowlTalk 만들기, 하울][https://www.inflearn.com/course/howltalk-android-%EC%B1%84%ED%8C%85%EC%95%B1]
 - [채팅앱 만드는 방법, 만들면서 배워가는 프로그래머][https://youtu.be/Q47lLj4ErKs?si=sNCV2-9j__b5c44s]
