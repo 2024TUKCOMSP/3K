@@ -33,13 +33,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
+            android:text="메시지"
             android:background="@drawable/left_bubble"/>
+
         <TextView
             android:id="@+id/recv_text_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/recv_text_message"
-            android:layout_alignBottom="@id/recv_text_message"
+            android:layout_below="@+id/recv_text_message"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="-10dp"
             android:gravity="left"
             android:text="타임 스탬프"
             android:textSize="10dp" />

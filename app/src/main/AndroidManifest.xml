@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApplication"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".FindIdActivity2"
             android:exported="false" />
@@ -29,9 +31,9 @@
             android:exported="false"
             android:parentActivityName=".ChatListActivity" />
         <activity
+            android:parentActivityName=".ChatListActivity"
             android:name=".ChatActivity"
             android:exported="false"
-            android:parentActivityName=".ChatListActivity"
             android:windowSoftInputMode = "stateHidden|adjustResize"/>
         <activity
             android:name=".ChatListActivity"
@@ -46,6 +48,20 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="@string/native_app_key" />
             </intent-filter>
         </activity>
     </application>

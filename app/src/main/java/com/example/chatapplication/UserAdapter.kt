@@ -2,16 +2,23 @@ package com.example.chatapplication
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.chatapplication.databinding.ItemFriendBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
-class UserAdapter(val context: Context, val userList: ArrayList<User>):
+class UserAdapter(val context: Context, val userList: ArrayList<User>, val uid: String):
     RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     inner class UserViewHolder(val binding: ItemFriendBinding): RecyclerView.ViewHolder(binding.root)
@@ -28,7 +35,24 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>):
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as UserViewHolder).binding
         val currentUser = userList[position]
-        binding.frienditemTextview.text = currentUser.name
+        binding.frienditemId.text = currentUser.name
+        binding.frienditemMessage.text = ""
+        binding.frienditemTimestamp.text = ""
+
+        val mDbRef = Firebase.database.reference
+        val chat_room = uid + currentUser.uId
+        mDbRef.child("chats").child(chat_room).child("messages")
+            .addValueEventListener(object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(postSnapshot in snapshot.children){
+                        val formatter = SimpleDateFormat("yyyy.MM.dd\nHH:mm")
+                        val date = Date(postSnapshot.child("timestamp").value.toString().toLong())
+                        binding.frienditemMessage.text = postSnapshot.child("message").value.toString()
+                        binding.frienditemTimestamp.text = formatter.format(date)
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
 
         val storage = Firebase.storage
         val storageRef = storage.getReference("image")

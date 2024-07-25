@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ServerValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class MessageAdapter(private val context: Context, private val messageList: ArrayList<Message>,
                      private val name: String, val size: Long, val style: Int):
@@ -35,20 +37,23 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentMessage = messageList[position]
+        val time = currentMessage.timestamp.toString().toLong()
+        val formatter = SimpleDateFormat("yyyy.MM.dd HH:mm")
+        val date = Date(time)
 
         if(holder.javaClass == SendViewHolder::class.java) {
             val viewHolder = holder as SendViewHolder
             viewHolder.sendMessage.text = currentMessage.message
             viewHolder.sendMessage.setTextSize(Dimension.SP, size.toFloat())
             viewHolder.sendMessage.typeface = ResourcesCompat.getFont(context, style)
-            viewHolder.sendTimestamp.text = currentMessage.timestamp
+            viewHolder.sendTimestamp.text = formatter.format(date)
         } else {
             val viewHolder = holder as RecvViewHolder
             viewHolder.recvName.text = name
             viewHolder.recvMessage.text = currentMessage.message
             viewHolder.recvMessage.setTextSize(Dimension.SP, size.toFloat())
             viewHolder.recvMessage.typeface = ResourcesCompat.getFont(context, style)
-            viewHolder.recvTimestamp.text = currentMessage.timestamp
+            viewHolder.recvTimestamp.text = formatter.format(date)
 
             val storage = Firebase.storage
             val storageRef = storage.getReference("image")

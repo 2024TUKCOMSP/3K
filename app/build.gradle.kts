@@ -47,6 +47,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:31.2.2"))
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.kakao.sdk:v2-user:2.20.3")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -62,6 +63,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("androidx.preference:preference-ktx:1.2.1") {
         exclude(group= "android.lifecycle", module = "lifecycle-viewmodel")
         exclude(group= "android.lifecycle", module = "lifecycle-viewmodel-ktx")
