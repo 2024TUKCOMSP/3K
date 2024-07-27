@@ -5,5 +5,10 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="Theme.Splash" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="S">@drawable/logo2</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="S">@color/background_color_login</item>
+    </style>
+
     <style name="Theme.ChatApplication" parent="Base.Theme.ChatApplication" />
 </resources>
