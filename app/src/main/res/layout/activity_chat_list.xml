@@ -6,9 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ChatListActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        app:titleTextColor="@color/black"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/Theme.AppCompat.Light"/>
+
     <FrameLayout
         android:id="@+id/chatlist_framelayout"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/toolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_above="@id/chatlist_bottomnavigationview"
