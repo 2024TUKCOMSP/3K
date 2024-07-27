@@ -71,7 +71,7 @@
                     android:layout_height="25dp"
                     android:layout_marginRight="15dp"
                     android:gravity="center"
-                    android:text="10"
+                    android:text="0"
                     android:background="@drawable/round_text"
                     android:textColor="#FFFFFF"
                     android:textSize="12dp" />
