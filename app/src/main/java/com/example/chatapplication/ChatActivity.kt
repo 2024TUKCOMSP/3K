@@ -74,7 +74,7 @@ class ChatActivity : AppCompatActivity() {
         binding.chatActivityButton.setOnClickListener {
             if(!binding.chatActivityEdittext.text.isEmpty()) {
                 val message = binding.chatActivityEdittext.text.toString()
-                val messageObject = Message(message, senderUid, ServerValue.TIMESTAMP)
+                val messageObject = Message(message, senderUid, ServerValue.TIMESTAMP, 1)
 
                 mDbRef.child("chats").child(senderRoom).child("messages").push()
                     .setValue(messageObject).addOnSuccessListener {
