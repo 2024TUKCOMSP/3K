@@ -26,12 +26,14 @@
             android:name=".FindPwActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
             android:name=".SettingActivity"
             android:exported="false"
             android:parentActivityName=".ChatListActivity" />
         <activity
             android:name=".ChatActivity"
             android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
             android:parentActivityName=".ChatListActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity

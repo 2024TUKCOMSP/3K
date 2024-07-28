@@ -7,8 +7,10 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.chatapplication.databinding.ActivityChatBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +20,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.snapshots
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import okhttp3.internal.wait
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
@@ -29,6 +34,7 @@ class ChatActivity : AppCompatActivity() {
 
     lateinit var mAuth: FirebaseAuth
     lateinit var mDbRef: DatabaseReference
+    lateinit var mountainsRef: StorageReference
 
     private lateinit var receiverRoom: String
     private lateinit var senderRoom: String
@@ -38,13 +44,24 @@ class ChatActivity : AppCompatActivity() {
     lateinit var listner1: ValueEventListener
     lateinit var listner2: ValueEventListener
 
+    var storage = Firebase.storage
+    val storageRef = storage.getReference("image/background")
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        mountainsRef = storageRef.child("$uid.png")
 
         messageList = ArrayList()
+
+        imageDownload()
 
         receiverName = intent.getStringExtra("name").toString()
         receiverUid = intent.getStringExtra("uId").toString()
@@ -133,5 +150,13 @@ class ChatActivity : AppCompatActivity() {
             }
         }
         override fun onCancelled(error: DatabaseError) {}
+    }
+
+    private fun imageDownload() {
+        val downloadTask = mountainsRef.downloadUrl
+        downloadTask.addOnSuccessListener { uri ->
+            Glide.with(this).load(uri).into(binding.chatImg)
+        }.addOnFailureListener {
+        }
     }
 }
