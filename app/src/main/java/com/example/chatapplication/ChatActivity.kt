@@ -2,6 +2,8 @@ package com.example.chatapplication
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +17,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.snapshots
+import okhttp3.internal.wait
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 
@@ -30,6 +34,9 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var senderRoom: String
 
     private lateinit var messageList: ArrayList<Message>
+
+    lateinit var listner1: ValueEventListener
+    lateinit var listner2: ValueEventListener
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +81,7 @@ class ChatActivity : AppCompatActivity() {
         binding.chatActivityButton.setOnClickListener {
             if(!binding.chatActivityEdittext.text.isEmpty()) {
                 val message = binding.chatActivityEdittext.text.toString()
-                val messageObject = Message(message, senderUid, ServerValue.TIMESTAMP)
+                val messageObject = Message(message, senderUid, ServerValue.TIMESTAMP, 1)
 
                 mDbRef.child("chats").child(senderRoom).child("messages").push()
                     .setValue(messageObject).addOnSuccessListener {
@@ -100,5 +107,31 @@ class ChatActivity : AppCompatActivity() {
                 }
                 override fun onCancelled(error: DatabaseError) {}
             })
+
+
+        listner1 = mDbRef.child("chats").child(receiverRoom).child("messages")
+            .addValueEventListener(readListner(receiverRoom, senderUid))
+        listner2 = mDbRef.child("chats").child(senderRoom).child("messages")
+            .addValueEventListener(readListner(senderRoom, senderUid))
+    }
+
+    override fun onStop() {
+        mDbRef.child("chats").child(receiverRoom).child("messages").removeEventListener(listner1)
+        mDbRef.child("chats").child(senderRoom).child("messages").removeEventListener(listner2)
+        super.onStop()
+    }
+
+    class readListner(val Room: String?, val senderUid: String?): ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val mDbRef = FirebaseDatabase.getInstance().reference
+            for(postSnapshat in snapshot.children) {
+                if(postSnapshat.child("sendId").value.toString() != senderUid) {
+                    val map: Map<String, Int> = mapOf("readIndicator" to 0)
+                    mDbRef.child("chats").child(Room!!).child("messages")
+                        .child(postSnapshat.key.toString()).updateChildren(map)
+                }
+            }
+        }
+        override fun onCancelled(error: DatabaseError) {}
     }
 }

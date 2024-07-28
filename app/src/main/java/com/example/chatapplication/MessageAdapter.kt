@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ServerValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -40,6 +41,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
         val time = currentMessage.timestamp.toString().toLong()
         val formatter = SimpleDateFormat("yyyy.MM.dd HH:mm")
         val date = Date(time)
+        val readIndicator = currentMessage.readIndicator
 
         if(holder.javaClass == SendViewHolder::class.java) {
             val viewHolder = holder as SendViewHolder
@@ -47,6 +49,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
             viewHolder.sendMessage.setTextSize(Dimension.SP, size.toFloat())
             viewHolder.sendMessage.typeface = ResourcesCompat.getFont(context, style)
             viewHolder.sendTimestamp.text = formatter.format(date)
+            viewHolder.sendread.text = if(currentMessage.readIndicator == 1) "1" else ""
         } else {
             val viewHolder = holder as RecvViewHolder
             viewHolder.recvName.text = name
@@ -54,6 +57,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
             viewHolder.recvMessage.setTextSize(Dimension.SP, size.toFloat())
             viewHolder.recvMessage.typeface = ResourcesCompat.getFont(context, style)
             viewHolder.recvTimestamp.text = formatter.format(date)
+            viewHolder.recvread.text = if(currentMessage.readIndicator == 1) "1" else ""
 
             val storage = Firebase.storage
             val storageRef = storage.getReference("image")
@@ -85,6 +89,7 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
     class SendViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val sendMessage: TextView = itemView.findViewById(R.id.send_text_message)
         val sendTimestamp: TextView = itemView.findViewById(R.id.send_text_time)
+        val sendread: TextView = itemView.findViewById(R.id.send_text_read)
     }
 
     // 받은 쪽
@@ -93,5 +98,6 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
         val recvName: TextView = itemView.findViewById(R.id.recv_text_name)
         val recvImage: ImageView = itemView.findViewById(R.id.recv_image_profile)
         val recvTimestamp: TextView = itemView.findViewById(R.id.recv_text_time)
+        val recvread: TextView = itemView.findViewById(R.id.recv_text_read)
     }
 }

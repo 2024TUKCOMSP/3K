@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -44,11 +45,18 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>, val uid: 
         mDbRef.child("chats").child(chat_room).child("messages")
             .addValueEventListener(object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    var count = 0
                     for(postSnapshot in snapshot.children){
+                        count += postSnapshot.child("readIndicator").value.toString().toInt()
                         val formatter = SimpleDateFormat("yyyy.MM.dd\nHH:mm")
                         val date = Date(postSnapshot.child("timestamp").value.toString().toLong())
                         binding.frienditemMessage.text = postSnapshot.child("message").value.toString()
                         binding.frienditemTimestamp.text = formatter.format(date)
+                    }
+                    if(count == 0) binding.frienditemUnRead.visibility = View.INVISIBLE
+                    else {
+                        binding.frienditemUnRead.visibility = View.VISIBLE
+                        binding.frienditemUnRead.text = count.toString()
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {}
