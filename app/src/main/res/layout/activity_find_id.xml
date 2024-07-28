@@ -5,21 +5,24 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color_login"
     tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="211dp"
-        android:layout_height="220dp"
-        android:src="@drawable/chat"
+        android:layout_width="338dp"
+        android:layout_height="286dp"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="아이디 찾기"
@@ -33,6 +36,8 @@
         app:layout_constraintVertical_bias="0.394" />
 
     <TextView
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="이름"
@@ -46,6 +51,8 @@
         app:layout_constraintVertical_bias="0.476" />
 
     <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:id="@+id/nameEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -63,6 +70,8 @@
         app:layout_constraintVertical_bias="0.538" />
 
     <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:id="@+id/phoneEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"

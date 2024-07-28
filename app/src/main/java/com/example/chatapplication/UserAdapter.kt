@@ -47,7 +47,14 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>, val uid: 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     var count = 0
                     for(postSnapshot in snapshot.children){
-                        count += postSnapshot.child("readIndicator").value.toString().toInt()
+                        val readIndicatorString = postSnapshot.child("readIndicator").value?.toString()
+                        val readIndicator = try {
+                            readIndicatorString?.toInt() ?: 0
+                        } catch (e: NumberFormatException) {
+                            0
+                        }
+
+                        count += readIndicator
                         val formatter = SimpleDateFormat("yyyy.MM.dd\nHH:mm")
                         val date = Date(postSnapshot.child("timestamp").value.toString().toLong())
                         binding.frienditemMessage.text = postSnapshot.child("message").value.toString()

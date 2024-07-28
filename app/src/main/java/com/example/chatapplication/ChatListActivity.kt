@@ -18,6 +18,11 @@ class ChatListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.title = "채팅"
+
+
 
         var bnv_main = findViewById(R.id.chatlist_bottomnavigationview) as BottomNavigationView
         bnv_main.run {
@@ -27,11 +32,13 @@ class ChatListActivity : AppCompatActivity() {
                         val peopleFragment = PeopleFragment()
                         supportFragmentManager.beginTransaction().replace(R.id.chatlist_framelayout,
                             peopleFragment).commit()
+                        supportActionBar?.title = "채팅"
                     }
                     R.id.action_Account -> {
                         val accountFragment = AccountFragment()
                         supportFragmentManager.beginTransaction().replace(R.id.chatlist_framelayout,
                             accountFragment).commit()
+                        supportActionBar?.title = "계정"
                     }
                 }
                 true
@@ -41,17 +48,17 @@ class ChatListActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menu?.add(0,0,0,"설정")
-        menu?.add(0,1,0,"로그아웃")
+        menuInflater.inflate(R.menu.chatlist_menu, menu)
+
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            0 -> {
+            R.id.setting -> {
                 startActivity(Intent(this@ChatListActivity, SettingActivity::class.java))
             }
-            1 -> {
+            R.id.logout -> {
                 AlertDialog.Builder(this).run{
                     setTitle("로그아웃")
                     setIcon(android.R.drawable.ic_dialog_info)
