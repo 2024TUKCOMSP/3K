@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.emailEdit.text.toString()
             val password = binding.passwordEdit.text.toString()
 
-            if(!email.isEmpty() || !password.isEmpty())
+            if(!email.isEmpty() && !password.isEmpty())
                 login(email, password)
         }
 
