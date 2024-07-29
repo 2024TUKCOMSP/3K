@@ -64,6 +64,8 @@ class LoginActivity : AppCompatActivity() {
 
             if(!email.isEmpty() && !password.isEmpty())
                 login(email, password)
+            else if(!email.isEmpty() || !password.isEmpty())
+                Toast.makeText(this, "아이디와 비밀번호를 모두 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
