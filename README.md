@@ -26,14 +26,25 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 - 사용자 이름, 프로필사진 변경 기능 구현
 
 ### 기능 화면
-<p align="center">
-<img width="30% alt="로그인 화면" src="https://github.com/user-attachments/assets/1af14b90-f13d-4b33-82ed-ee6b1b9c904b">
-<img width="30% alt="채팅방 화면" src="https://github.com/user-attachments/assets/71f03b54-01e5-4e3e-b96d-061680255e6c">
-<img width="30% alt="채팅 화면" src="https://github.com/user-attachments/assets/64eee37a-6b1f-4581-bbac-b8d11954b950">
-<img width="30% alt="설정 화면" src="https://github.com/user-attachments/assets/1b833e31-07e2-4f9b-b4a0-09e806c2777f">
-<img width="30% alt="프로필 화면" src="https://github.com/user-attachments/assets/c838e708-7368-4059-b99e-bd06f1a62fb9">
-</p>
+**로그인창** | **회원가입** | **아이디 찾기** | **비밀번호 찾기** 
+ :-------------------: | :--------------------: | :--------------------: | :--------------------: 
+<img src="https://github.com/user-attachments/assets/cab5ea38-186e-407c-ad78-f9d491d0dc69" alt="로그인" width="250"/> | <img src="https://github.com/user-attachments/assets/06966eef-da3e-44ae-8871-eaa1c6a729fc" alt="회원가입" width="250"/> | <img src="https://github.com/user-attachments/assets/bab89767-adb6-4d33-8ddd-76325a496383" alt="아이디찾기" width="250"/> | <img src="https://github.com/user-attachments/assets/24e1c241-0975-4fcc-bea9-d63002e28681" alt="비밀번호찾기" width="250"/>
 
+**채팅방 목록** | **채팅 도착시 목록** | **채팅방** | **채팅 전송** 
+ :-------------------: | :--------------------: | :--------------------: | :--------------------: 
+<img src="https://github.com/user-attachments/assets/22a4fdab-1a9d-479c-be34-e582848b4076" alt="채팅방목록" width="250"/> | <img src="https://github.com/user-attachments/assets/4bf2c699-887b-40ca-8c71-b56e05c59528" alt="채팅도착" width="250"/> | <img src="https://github.com/user-attachments/assets/795b1137-1d58-47af-a5be-7c76d2219973" alt="채팅방" width="250"/> | <img src="https://github.com/user-attachments/assets/8befe7e4-7be7-412e-9396-ed65f1e166ce" alt="채팅전송" width="250"/>
+
+**상대방 채팅방 목록** | **상대방 채팅방** | **프로필 설정** | **설정 아이템 선택** 
+ :-------------------: | :--------------------: | :--------------------: | :--------------------: 
+<img src="https://github.com/user-attachments/assets/8ff594b3-4380-4ae0-9bda-306f8f529479" alt="채팅방목록(상대)" width="250"/> | <img src="https://github.com/user-attachments/assets/d329a597-eb52-4bfc-ab2b-10946cad3b2d" alt="채팅(상대)" width="250"/> | <img src="https://github.com/user-attachments/assets/59031c7c-bc07-4811-8c1e-f0667bc06649" alt="프로필" width="250"/> | <img src="https://github.com/user-attachments/assets/b0c63cdd-6084-4e62-975a-c5282a0baee0" alt="설정액션아이템" width="250"/>
+
+**환경설정** | **글자 크기 설정** | **글자 크기 범위 외** | **글자 폰트 설정** 
+ :-------------------: | :--------------------: | :--------------------: | :--------------------: 
+<img src="https://github.com/user-attachments/assets/75c2d6e7-65b1-47cf-98cb-3b7f2812fc96" alt="환경설정" width="250"/> | <img src="https://github.com/user-attachments/assets/36be5c36-62b2-42db-a876-0b0d9ceaa1d9" alt="글자크기" width="250"/> | <img src="https://github.com/user-attachments/assets/41c9472f-ae2f-423a-9b37-85e48522b0b7" alt="글자크기범위외" width="250"/> | <img src="https://github.com/user-attachments/assets/8e068da9-b26a-4a7e-a629-511e4c7d4759" alt="폰트 설정" width="250"/>
+
+**채팅방 그림 설정 클릭 시 이동** | **설정 후 채팅방**
+ :-------------------: | :--------------------:
+<img src="https://github.com/user-attachments/assets/b0f00288-9d11-4086-b574-21fbf201ec46" alt="설정 클릭" width="250"/> | <img src="https://github.com/user-attachments/assets/b36167a7-9688-42cb-8d4c-a6802ef2d6d0" alt="설정 후 채팅" width="250"/>
 
 ### 참고 자료
 - [Firebase 서버를 통한 Android앱 HowlTalk 만들기, 하울][https://www.inflearn.com/course/howltalk-android-%EC%B1%84%ED%8C%85%EC%95%B1]
