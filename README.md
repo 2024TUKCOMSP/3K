@@ -28,11 +28,11 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 ### 기능 화면
 **로그인창** | **회원가입** | **아이디 찾기**
 :-------------------: | :--------------------: | :--------------------:
-<img src="https://github.com/user-attachments/assets/cab5ea38-186e-407c-ad78-f9d491d0dc69" alt="로그인" width="320"/> | <img src="https://github.com/user-attachments/assets/06966eef-da3e-44ae-8871-eaa1c6a729fc" alt="회원가입" width="320"/> | <img src="https://github.com/user-attachments/assets/bab89767-adb6-4d33-8ddd-76325a496383" alt="아이디찾기" width="320"/>
+<img src="https://github.com/user-attachments/assets/cab5ea38-186e-407c-ad78-f9d491d0dc69" alt="로그인" width="320"/> | <img src="https://github.com/user-attachments/assets/caf02433-31fa-4281-9b67-3495e9b3059e" alt="회원가입" width="320"/> | <img src="https://github.com/user-attachments/assets/7ec56cb6-11d2-4825-abfc-555eea0ee2fb" alt="아이디찾기" width="320"/>
 
 **비밀번호 찾기** | **채팅방 목록** | **채팅 도착시 목록**
 :-------------------: | :--------------------: | :--------------------:
-<img src="https://github.com/user-attachments/assets/24e1c241-0975-4fcc-bea9-d63002e28681" alt="비밀번호찾기" width="320"/> | <img src="https://github.com/user-attachments/assets/22a4fdab-1a9d-479c-be34-e582848b4076" alt="채팅방목록" width="320"/> | <img src="https://github.com/user-attachments/assets/4bf2c699-887b-40ca-8c71-b56e05c59528" alt="채팅도착" width="320"/>
+<img src="https://github.com/user-attachments/assets/2a6b99bf-62c7-4941-99a5-ac4b10a242a0" alt="비밀번호찾기" width="320"/> | <img src="https://github.com/user-attachments/assets/22a4fdab-1a9d-479c-be34-e582848b4076" alt="채팅방목록" width="320"/> | <img src="https://github.com/user-attachments/assets/4bf2c699-887b-40ca-8c71-b56e05c59528" alt="채팅도착" width="320"/>
 
 **채팅방**| **채팅 전송** | **상대방 채팅방 목록**
 :-------------------: | :--------------------: | :--------------------:
@@ -49,6 +49,11 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 **글자 폰트 설정** | **채팅방 그림 설정 클릭 시 이동** | **설정 후 채팅방**
 :-------------------: | :--------------------: | :--------------------:
  <img src="https://github.com/user-attachments/assets/8e068da9-b26a-4a7e-a629-511e4c7d4759" alt="폰트 설정" width="320"/> | <img src="https://github.com/user-attachments/assets/b0f00288-9d11-4086-b574-21fbf201ec46" alt="설정 클릭" width="320"/> | <img src="https://github.com/user-attachments/assets/b36167a7-9688-42cb-8d4c-a6802ef2d6d0" alt="설정 후 채팅" width="320"/>
+
+![아이디 찾기](https://github.com/user-attachments/assets/7ec56cb6-11d2-4825-abfc-555eea0ee2fb)
+![회원가입](https://github.com/user-attachments/assets/caf02433-31fa-4281-9b67-3495e9b3059e)
+![비밀번호 찾기](https://github.com/user-attachments/assets/2a6b99bf-62c7-4941-99a5-ac4b10a242a0)
+
 
 ### 참고 자료
 - [Firebase 서버를 통한 Android앱 HowlTalk 만들기, 하울][https://www.inflearn.com/course/howltalk-android-%EC%B1%84%ED%8C%85%EC%95%B1]
