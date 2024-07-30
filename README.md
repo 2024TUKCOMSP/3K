@@ -50,11 +50,6 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 :-------------------: | :--------------------: | :--------------------:
  <img src="https://github.com/user-attachments/assets/8e068da9-b26a-4a7e-a629-511e4c7d4759" alt="폰트 설정" width="320"/> | <img src="https://github.com/user-attachments/assets/b0f00288-9d11-4086-b574-21fbf201ec46" alt="설정 클릭" width="320"/> | <img src="https://github.com/user-attachments/assets/b36167a7-9688-42cb-8d4c-a6802ef2d6d0" alt="설정 후 채팅" width="320"/>
 
-![아이디 찾기](https://github.com/user-attachments/assets/7ec56cb6-11d2-4825-abfc-555eea0ee2fb)
-![회원가입](https://github.com/user-attachments/assets/caf02433-31fa-4281-9b67-3495e9b3059e)
-![비밀번호 찾기](https://github.com/user-attachments/assets/2a6b99bf-62c7-4941-99a5-ac4b10a242a0)
-
-
 ### 참고 자료
 - [Firebase 서버를 통한 Android앱 HowlTalk 만들기, 하울][https://www.inflearn.com/course/howltalk-android-%EC%B1%84%ED%8C%85%EC%95%B1]
 - [채팅앱 만드는 방법, 만들면서 배워가는 프로그래머][https://youtu.be/Q47lLj4ErKs?si=sNCV2-9j__b5c44s]
