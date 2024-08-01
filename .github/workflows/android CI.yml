@@ -2,9 +2,9 @@ name: Android CI CD
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -19,6 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
+        
+    - name: Set up SDK
+      uses: android-actions/setup-android@v2
 
     - name: Access MAPS_API_KEY
       env:
@@ -30,11 +33,12 @@ jobs:
     - name: Clean Bulid
       run: ./gradlew clean build
         
-    - name: Set up SDK
-      uses: android-actions/setup-android@v2
-
-    - name: Upload Debug APK
-      uses: actions/upload-artifact@v4
+    - name: Run Android Test
+      uses: reactivecircus/android-emulator-runner@v2
       with:
-       name: debug
-       path: ./app/build/outputs/apk/debug/app-debug.apk
+       api-level: 24
+       target: default
+       arch: x86
+       profile: Nexus 6
+       script: ./gradlew connectedCheck --stacktrace
+       run: ./gradlew connectedAndroidTest

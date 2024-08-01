@@ -20,7 +20,37 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 ### 기능 구현
 - 파이어베이스를 통한 채팅 어플 구현
 - Realtime Database 및 채팅 UI 구현  
-- 로그인 기능 구현
+- 로그인, 로그아웃 기능 구현
+- 아이디, 비밀번호 찾기 기능 구현
+- 회원가입 기능 구현
+- 메세지 송수신 및 알림 기능
+- 사용자 이름, 프로필사진 변경 기능 구현
+- 사용자 채팅방 커스텀 기능 제공
+
+### 기능 화면
+**로그인창** | **회원가입** | **아이디 찾기**
+:-------------------: | :--------------------: | :--------------------:
+<img src="https://github.com/user-attachments/assets/cab5ea38-186e-407c-ad78-f9d491d0dc69" alt="로그인" width="320"/> | <img src="https://github.com/user-attachments/assets/caf02433-31fa-4281-9b67-3495e9b3059e" alt="회원가입" width="320"/> | <img src="https://github.com/user-attachments/assets/7ec56cb6-11d2-4825-abfc-555eea0ee2fb" alt="아이디찾기" width="320"/>
+
+**비밀번호 찾기** | **채팅방 목록** | **채팅 도착시 목록**
+:-------------------: | :--------------------: | :--------------------:
+<img src="https://github.com/user-attachments/assets/2a6b99bf-62c7-4941-99a5-ac4b10a242a0" alt="비밀번호찾기" width="320"/> | <img src="https://github.com/user-attachments/assets/22a4fdab-1a9d-479c-be34-e582848b4076" alt="채팅방목록" width="320"/> | <img src="https://github.com/user-attachments/assets/4bf2c699-887b-40ca-8c71-b56e05c59528" alt="채팅도착" width="320"/>
+
+**채팅방**| **채팅 전송** | **상대방 채팅방 목록**
+:-------------------: | :--------------------: | :--------------------:
+<img src="https://github.com/user-attachments/assets/795b1137-1d58-47af-a5be-7c76d2219973" alt="채팅방" width="320"/> | <img src="https://github.com/user-attachments/assets/8befe7e4-7be7-412e-9396-ed65f1e166ce" alt="채팅전송" width="320"/> | <img src="https://github.com/user-attachments/assets/8ff594b3-4380-4ae0-9bda-306f8f529479" alt="채팅방목록(상대)" width="320"/>
+
+**상대방 채팅방** | **프로필 설정**| **설정 아이템 선택**
+:-------------------: | :--------------------: | :--------------------:
+<img src="https://github.com/user-attachments/assets/d329a597-eb52-4bfc-ab2b-10946cad3b2d" alt="채팅(상대)" width="320"/> | <img src="https://github.com/user-attachments/assets/59031c7c-bc07-4811-8c1e-f0667bc06649" alt="프로필" width="320"/> | <img src="https://github.com/user-attachments/assets/b0c63cdd-6084-4e62-975a-c5282a0baee0" alt="설정액션아이템" width="320"/>
+
+**환경설정** | **글자 크기 설정** | **글자 크기 범위 외**
+:-------------------: | :--------------------: | :--------------------:
+<img src="https://github.com/user-attachments/assets/75c2d6e7-65b1-47cf-98cb-3b7f2812fc96" alt="환경설정" width="320"/> | <img src="https://github.com/user-attachments/assets/36be5c36-62b2-42db-a876-0b0d9ceaa1d9" alt="글자크기" width="320"/> | <img src="https://github.com/user-attachments/assets/41c9472f-ae2f-423a-9b37-85e48522b0b7" alt="글자크기범위외" width="320"/>
+
+**글자 폰트 설정** | **채팅방 그림 설정 클릭 시 이동** | **설정 후 채팅방**
+:-------------------: | :--------------------: | :--------------------:
+ <img src="https://github.com/user-attachments/assets/8e068da9-b26a-4a7e-a629-511e4c7d4759" alt="폰트 설정" width="320"/> | <img src="https://github.com/user-attachments/assets/b0f00288-9d11-4086-b574-21fbf201ec46" alt="설정 클릭" width="320"/> | <img src="https://github.com/user-attachments/assets/b36167a7-9688-42cb-8d4c-a6802ef2d6d0" alt="설정 후 채팅" width="320"/>
 
 ### 참고 자료
 - [Firebase 서버를 통한 Android앱 HowlTalk 만들기, 하울][https://www.inflearn.com/course/howltalk-android-%EC%B1%84%ED%8C%85%EC%95%B1]
@@ -31,6 +61,8 @@ Firebase를 활용한 실시간으로 메시지를 주고 받을 수 있는 채�
 - [[Android] Github Actions 를 통해 CI/CD를 구축해보자!, 윤호이][https://velog.io/@lyh990517/Android-Github-Actions-%EB%A5%BC-%ED%86%B5%ED%95%B4CICD%EB%A5%BC-%EA%B5%AC%EC%B6%95%ED%95%B4%EB%B3%B4%EC%9E%90]
 - [[Android] File google-services.json is missing. 에러 해결 방법, JoJo Develog][https://velog.io/@jojo_devstory/Android-File-google-services.json-is-missing.-%EC%97%90%EB%9F%AC-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95]
 - [[안드로이드] Github Actions으로 구글 플레이스토어 배포 with google-services.json, keel_im][[https://keelim.tistory.com/entry/Github-Actions%EC%9C%BC%EB%A1%9C-%EA%B5%AC%EA%B8%80-%ED%94%8C%EB%A0%88%EC%9D%B4%EC%8A%A4%ED%86%A0%EC%96%B4-%EB%B0%B0%ED%8F%AC-with-google-servicesjson]
+- [[Android] Github Action 를 이용하여 CD 를 적용 하는 방법, 이지훈][https://velog.io/@mraz3068/Apply-Android-Github-Action-CD]
+- [Kakao Developers][https://developers.kakao.com]
 
 ## 기술 스택
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)

@@ -51,6 +51,8 @@ class PeopleFragment : Fragment() {
 
         mDbRef.child("user").addValueEventListener(object:ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                if(!userList.isEmpty())
+                    userList = ArrayList()
                 for(postSnapshot in snapshot.children){
                     // 유저 정보
                     val currentUser = postSnapshot.getValue(User::class.java)
@@ -61,10 +63,8 @@ class PeopleFragment : Fragment() {
                 }
                 adapter.notifyDataSetChanged()
             }
-
             override fun onCancelled(error: DatabaseError) {
             }
-
         })
 
         return binding.root
