@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -164,6 +165,7 @@ class LoginActivity : AppCompatActivity() {
                     val mDbRef = Firebase.database.reference
                     val name = account.displayName.toString()
                     val email = account.email.toString()
+                    Log.d("DFAAS", "FASDF")
 
                     mDbRef.child("user").child(uId).addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
