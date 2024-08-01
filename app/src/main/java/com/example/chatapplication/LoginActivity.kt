@@ -8,6 +8,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.chatapplication.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -45,6 +47,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        installSplashScreen()
         setContentView(binding.root)
 
         mAuth = Firebase.auth
@@ -59,8 +62,10 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.emailEdit.text.toString()
             val password = binding.passwordEdit.text.toString()
 
-            if(!email.isEmpty() || !password.isEmpty())
+            if(!email.isEmpty() && !password.isEmpty())
                 login(email, password)
+            else if(!email.isEmpty() || !password.isEmpty())
+                Toast.makeText(this, "아이디와 비밀번호를 모두 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

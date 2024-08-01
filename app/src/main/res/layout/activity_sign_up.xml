@@ -5,21 +5,23 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color_login"
     tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="211dp"
-        android:layout_height="220dp"
-        android:src="@drawable/chat"
+        android:layout_width="338dp"
+        android:layout_height="286dp"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="회원가입"
@@ -32,6 +34,7 @@
         app:layout_constraintVertical_bias="0.355" />
 
     <TextView
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="이름"
@@ -45,6 +48,8 @@
         app:layout_constraintVertical_bias="0.413" />
 
     <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:id="@+id/nameEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -62,6 +67,7 @@
         app:layout_constraintVertical_bias="0.454" />
 
     <TextView
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="전화번호( - 입력X)"
@@ -75,6 +81,8 @@
         app:layout_constraintVertical_bias="0.53" />
 
     <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:id="@+id/passwordEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -92,6 +100,7 @@
         app:layout_constraintVertical_bias="0.827" />
 
     <TextView
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="이메일(아이디)"
@@ -105,6 +114,8 @@
         app:layout_constraintVertical_bias="0.647" />
 
     <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:id="@+id/phoneEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -121,6 +132,7 @@
         app:layout_constraintVertical_bias="0.578" />
 
     <TextView
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="비밀번호"
@@ -134,6 +146,8 @@
         app:layout_constraintVertical_bias="0.765" />
 
     <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:id="@+id/emailEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
