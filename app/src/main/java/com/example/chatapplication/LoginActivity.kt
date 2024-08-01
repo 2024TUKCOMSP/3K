@@ -70,8 +70,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestServerAuthCode(getString(R.string.my_web_client_id))
-            .requestIdToken(getString(R.string.my_web_client_id))
+            .requestServerAuthCode(getString(R.string.default_web_client_id))
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
@@ -166,7 +166,6 @@ class LoginActivity : AppCompatActivity() {
                     val mDbRef = Firebase.database.reference
                     val name = account.displayName.toString()
                     val email = account.email.toString()
-                    Log.d("DFAAS", "FASDF")
 
                     mDbRef.child("user").child(uId).addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
@@ -198,7 +197,7 @@ class LoginActivity : AppCompatActivity() {
 // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
-                Log.e("TAG", "카카오계정으로 로그인 실패", error)
+                Log.e("TAG", "카카오계정으로 로그인 실패1", error)
             } else if (token != null) {
                 firebaseAuthWithCustomToken(token.idToken!!)
 
@@ -209,7 +208,7 @@ class LoginActivity : AppCompatActivity() {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
             UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
                 if (error != null) {
-                    Log.e("TAG", "카카오톡으로 로그인 실패", error)
+                    Log.e("TAG", "카카오톡으로 로그인 실패2", error)
 
                     // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
                     // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)

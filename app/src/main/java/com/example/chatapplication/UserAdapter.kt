@@ -53,8 +53,8 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>, val uid: 
                         } catch (e: NumberFormatException) {
                             0
                         }
-
-                        count += readIndicator
+                        if(postSnapshot.child("sendId").value.toString() != uid)
+                            count += readIndicator
                         val formatter = SimpleDateFormat("yyyy.MM.dd\nHH:mm")
                         val date = Date(postSnapshot.child("timestamp").value.toString().toLong())
                         binding.frienditemMessage.text = postSnapshot.child("message").value.toString()
