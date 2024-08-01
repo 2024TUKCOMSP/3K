@@ -1,7 +1,8 @@
 name: Android CD
 
 on: 
-  workflow_dispatch
+  workflow_dispatch:
+    branches: [ "main" ]
   push:
     branches: [ "main", "develop" ]
   pull_request:
